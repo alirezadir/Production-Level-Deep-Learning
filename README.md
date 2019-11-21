@@ -105,7 +105,7 @@ In the following, we will go through each module and recommend toolsets and fram
 ### 4.1. Testing and CI/CD
 Machine Learning production software requires a more diverse set of test suites than traditional software:
 <p align="center">
-  <img src="https://github.com/alirezadir/Production-Level-Deep-Learning/blob/master/images/testing.png" title="" width="50%" height="50%">
+  <img src="https://github.com/alirezadir/Production-Level-Deep-Learning/blob/master/images/testing.png" title="" width="75%" height="75%">
    </p>
    
 * Unit and Integration Testing: 
