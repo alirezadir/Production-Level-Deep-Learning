@@ -5,7 +5,9 @@ Deploying deep learning models in production could be challenging, as it's far b
 <img src="https://github.com/alirezadir/Production-Level-Deep-Learning/blob/master/images/components.png" title="" width="85%" height="85%">
 </p>
 
-This repo aims to serve as a an engieering guideline for building production-level deep learning systems to be deployed in real world applications. *Most of the content is borrowed from [Full Stack Deep Learning](https://fullstackdeeplearning.com) and [Pipeline.ai](https://pipeline.ai/)'s [Advanced KubeFlow Meetup](https://www.meetup.com/Advanced-KubeFlow/)* 
+This repo aims to serve as a an engieering guideline for building production-level deep learning systems to be deployed in real world applications. 
+
+(*The material presented here is moslty borrowed from [Full Stack Deep Learning Bootcamp](https://fullstackdeeplearning.com) (by [Pieter Abbeel](https://people.eecs.berkeley.edu/~pabbeel/), [Josh Tobin](http://josh-tobin.com/), and [Sergey Karayev](https://sergeykarayev.com/)), [TFX workshop](https://conferences.oreilly.com/tensorflow/tf-ca/public/schedule/detail/79327) by [Robert Crowe](https://www.linkedin.com/in/robert-crowe/), and [Pipeline.ai](https://pipeline.ai/)'s [Advanced KubeFlow Meetup](https://www.meetup.com/Advanced-KubeFlow/) by [Chris Fregly](https://www.linkedin.com/in/cfregly/).* )
 
 The following figure represent a high level overview of different components in a production level deep learning system:
 <p align="center">
@@ -15,7 +17,7 @@ In the following, we will go through each module and recommend toolsets and fram
 
 ## 1. Data Management 
 ### 1.1. Data Sources 
-* Open source 
+* Open source data (good to start with, not an advantage) 
 * Data augmentation 
 * Synthetic data 
 ### 1.2. Labeling 
@@ -25,26 +27,27 @@ In the following, we will go through each module and recommend toolsets and fram
   * Supervisely 
   * Labelbox 
   * Scale.ai 
-* Sources of labor: 
+* Sources of labor for labeling: 
   * Crowdsource 
   * Service companies 
-      * FigureEight 
+      * [FigureEight](https://www.figure-eight.com/) 
   * Hire annotators 
     
 ### 1.3. Storage 
 * **object store**: Store binary data (images, sound files, compressed texts) 
-  * Aamzon S3 
-  * Ceph 
+  * [Aamzon S3](https://aws.amazon.com/s3/) 
+  * [Ceph](https://ceph.io/) Object Store
 * **Database**: Store metadata (file paths, labels, user activity, etc). 
-  * Postgres is the right choice for most of applications, with the best-in-class SQL and great support for unstructured JSON. 
+  * [Postgres](https://www.postgresql.org/) is the right choice for most of applications, with the best-in-class SQL and great support for unstructured JSON. 
 * **Data Lake**: to aggregate features which are not obtainable from database (e.g. logs)
+  * [Amazon Redshift](https://aws.amazon.com/redshift/)
 * **Feature Store**: [TBC]
 * Train time: copy data into a local or netwroked **filesystem** 
 
 ### 1.4. Versioning 
-* DVC: Open source version control system for ML projects 
-* Pachyderm: version control for data 
-* Dolt: versioning for SQL database 
+* [DVC](https://dvc.org/): Open source version control system for ML projects 
+* [Pachyderm](https://www.pachyderm.com/): version control for data 
+* [Dolt](https://www.liquidata.co/): versioning for SQL database 
     
 ### 1.5. Processing 
 - Training data may come from different sources: Stored data in db and object stores, log processing, outputs of other classifiers.
@@ -188,8 +191,12 @@ Machine Learning production software requires a more diverse set of test suites 
    <img src="https://github.com/alirezadir/Production-Level-Deep-Learning/blob/master/images/infra-cmp.png" title="" width="85%" height="85%">
 </p>
 
+## Other useful links: 
+* [Lessons learned from building practical deep learning systems](https://www.slideshare.net/xamat/lessons-learned-from-building-practical-deep-learning-systems)
+* 
+
 ## References: 
-1. [Full Stack Deep Learning](fullstackdeeplearning.com)
+1. [Full Stack Deep Learning](https://fullstackdeeplearning.com)
 2. [Pipeline.ai](https://pipeline.ai/)'s [Advanced KubeFlow Meetup](https://www.meetup.com/Advanced-KubeFlow/)
 3. TFX Presentation [TBA]
 
