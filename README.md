@@ -5,7 +5,7 @@ Deploying deep learning models in production could be challenging, as it's far b
 <img src="https://github.com/alirezadir/Production-Level-Deep-Learning/blob/master/images/components.png" title="" width="85%" height="85%">
 </p>
 
-This repo aims to serve as a an engieering guideline for building production-level deep learning systems to be deployed in real world applications. * Most of the content is borrowed from [Full Stack Deep Learning](https://fullstackdeeplearning.com) and [Pipeline.ai](https://pipeline.ai/)'s [Advanced KubeFlow Meetup](https://www.meetup.com/Advanced-KubeFlow/) * 
+This repo aims to serve as a an engieering guideline for building production-level deep learning systems to be deployed in real world applications. *Most of the content is borrowed from [Full Stack Deep Learning](https://fullstackdeeplearning.com) and [Pipeline.ai](https://pipeline.ai/)'s [Advanced KubeFlow Meetup](https://www.meetup.com/Advanced-KubeFlow/)* 
 
 The following figure represent a high level overview of different components in a production level deep learning system:
 <p align="center">
@@ -187,5 +187,11 @@ Machine Learning production software requires a more diverse set of test suites 
 <p align="center">
    <img src="https://github.com/alirezadir/Production-Level-Deep-Learning/blob/master/images/infra-cmp.png" title="" width="85%" height="85%">
 </p>
+
+## References: 
+1. [Full Stack Deep Learning](fullstackdeeplearning.com)
+2. [Pipeline.ai](https://pipeline.ai/)'s [Advanced KubeFlow Meetup](https://www.meetup.com/Advanced-KubeFlow/)
+3. TFX Presentation [TBA]
+
    
     
