@@ -1,18 +1,16 @@
-# Production-Level-Deep-Learning
-Deploying deep learning models in production could be challenging, as it's far beyond just training models with good perfromance [Under developement].    
+# Production-Level-Deep-Learning (Under developement)
+Deploying deep learning models in production could be challenging, as it's far beyond just training models with good perfromance. As you can see in the following figure, there are several components that need to be properly designed and developed in order to deploy a production level deep learning system:
 
 <p align="center">
-<img src="https://github.com/alirezadir/Production-Level-Deep-Learning/blob/master/images/components.png" title="" width="75%" height="75%">
+<img src="https://github.com/alirezadir/Production-Level-Deep-Learning/blob/master/images/components.png" title="" width="85%" height="85%">
 </p>
-
 
 This repo aims to serve as a an engieering guideline for building production-level deep learning systems to be deployed in real world applications. * Most of the content is borrowed from [Full Stack Deep Learning](https://fullstackdeeplearning.com) and [Pipeline.ai](https://pipeline.ai/)'s [Advanced KubeFlow Meetup](https://www.meetup.com/Advanced-KubeFlow/) * 
 
-The following figure represent different components in a production level deep learning system:
+The following figure represent a high level overview of different components in a production level deep learning system:
 <p align="center">
 <img src="https://github.com/alirezadir/Production-Level-Deep-Learning/blob/master/images/infra_tooling.png" title="" width="95%" height="95%">
 </p>
-
 In the following, we will go through each module and recommend toolsets and frameworks as well as best practices from practioners that fit each component. 
 
 ## 1. Data Management 
@@ -187,7 +185,7 @@ Machine Learning production software requires a more diverse set of test suites 
    * Determined AI 
    * Domino data lab 
 <p align="center">
-   <img src="https://github.com/alirezadir/Production-Level-Deep-Learning/blob/master/images/infra-cmp.png" title="" width="75%" height="75%">
+   <img src="https://github.com/alirezadir/Production-Level-Deep-Learning/blob/master/images/infra-cmp.png" title="" width="85%" height="85%">
 </p>
    
     
