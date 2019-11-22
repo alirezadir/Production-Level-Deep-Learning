@@ -1,4 +1,4 @@
-# A Guideline to Production Level Deep Learning [Under developement]
+# A Guideline to Production Level Deep Learning [*Under developement*]
 Deploying deep learning models in production could be challenging, as it's far beyond just training models with good perfromance. As you can see in the following figure, there are several components that need to be properly designed and developed in order to deploy a production level deep learning system:
 
 <p align="center">
