@@ -1,11 +1,11 @@
-# Production-Level-Deep-Learning (Under developement)
+# A Guideline to Production Level Deep Learning [Under developement]
 Deploying deep learning models in production could be challenging, as it's far beyond just training models with good perfromance. As you can see in the following figure, there are several components that need to be properly designed and developed in order to deploy a production level deep learning system:
 
 <p align="center">
 <img src="https://github.com/alirezadir/Production-Level-Deep-Learning/blob/master/images/components.png" title="" width="85%" height="85%">
 </p>
 
-This repo aims to serve as a an engieering guideline for building production-level deep learning systems to be deployed in real world applications. 
+This repo aims to serve as a an engineering guideline for building production-level deep learning systems to be deployed in real world applications. 
 
 (*The material presented here is moslty borrowed from [Full Stack Deep Learning Bootcamp](https://fullstackdeeplearning.com) (by [Pieter Abbeel](https://people.eecs.berkeley.edu/~pabbeel/), [Josh Tobin](http://josh-tobin.com/), and [Sergey Karayev](https://sergeykarayev.com/)), [TFX workshop](https://conferences.oreilly.com/tensorflow/tf-ca/public/schedule/detail/79327) by [Robert Crowe](https://www.linkedin.com/in/robert-crowe/), and [Pipeline.ai](https://pipeline.ai/)'s [Advanced KubeFlow Meetup](https://www.meetup.com/Advanced-KubeFlow/) by [Chris Fregly](https://www.linkedin.com/in/cfregly/).* )
 
@@ -202,6 +202,7 @@ Machine Learning production software requires a more diverse set of test suites 
 ## Other useful links: 
 * [Lessons learned from building practical deep learning systems](https://www.slideshare.net/xamat/lessons-learned-from-building-practical-deep-learning-systems)
  
+## [Contributing](https://github.com/alirezadir/Production-Level-Deep-Learning/blob/master/CONTRIBUTING.md)
 
 ## References: 
 
@@ -209,7 +210,7 @@ Machine Learning production software requires a more diverse set of test suites 
 
 <a name="pipe">[2]</a>: [Advanced KubeFlow Workshop](https://www.meetup.com/Advanced-KubeFlow/) by [Pipeline.ai](https://pipeline.ai/)
 
-<a name="pipe">[3]</a>: TFX Presentation [TBA]
+<a name="pipe">[3]</a>: TFX: Real World Machine Learning in Production (https://cdn.oreillystatic.com/en/assets/1/event/298/TFX_%20Production%20ML%20pipelines%20with%20TensorFlow%20Presentation.pdf)
 
    
     
