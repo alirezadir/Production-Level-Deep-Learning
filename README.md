@@ -21,28 +21,33 @@ In the following, we will go through each module and recommend toolsets and fram
 * Data augmentation 
 * Synthetic data 
 ### 1.2. Labeling 
-* Platforms: 
-  * Prodigy 
-  * HIVE 
-  * Supervisely 
-  * Labelbox 
-  * Scale.ai 
 * Sources of labor for labeling: 
-  * Crowdsource 
+  * Crowdsourcing 
   * Service companies 
       * [FigureEight](https://www.figure-eight.com/) 
-  * Hire annotators 
+  * Hiring annotators 
+* Labeling platforms: 
+  * [Prodigy](https://prodi.gy/): An annotation tool powered
+by active learning (by developers of Spacy), text and image 
+  * [HIVE](https://thehive.ai/): AI as a Service platform for computer vision  
+  * [Supervisely](https://supervise.ly/): entire computer vision platform 
+  * [Labelbox](https://labelbox.com/): computer vision  
+  * [Scale](https://scale.com/) AI data platform (computer vision & NLP)
+
     
 ### 1.3. Storage 
-* **object store**: Store binary data (images, sound files, compressed texts) 
-  * [Aamzon S3](https://aws.amazon.com/s3/) 
-  * [Ceph](https://ceph.io/) Object Store
-* **Database**: Store metadata (file paths, labels, user activity, etc). 
-  * [Postgres](https://www.postgresql.org/) is the right choice for most of applications, with the best-in-class SQL and great support for unstructured JSON. 
-* **Data Lake**: to aggregate features which are not obtainable from database (e.g. logs)
-  * [Amazon Redshift](https://aws.amazon.com/redshift/)
-* **Feature Store**: [TBC]
-* Train time: copy data into a local or netwroked **filesystem** 
+* Data storage options: 
+  * **Object store**: Store binary data (images, sound files, compressed texts) 
+    * [Aamzon S3](https://aws.amazon.com/s3/) 
+    * [Ceph](https://ceph.io/) Object Store
+  * **Database**: Store metadata (file paths, labels, user activity, etc). 
+    * [Postgres](https://www.postgresql.org/) is the right choice for most of applications, with the best-in-class SQL and great support for unstructured JSON. 
+  * **Data Lake**: to aggregate features which are not obtainable from database (e.g. logs)
+    * [Amazon Redshift](https://aws.amazon.com/redshift/)
+  * **Feature Store**: storage and access of machine learning features
+    * [FEAST](https://github.com/gojek/feast) (Google cloud, Open Source)
+    * [Michelangelo](https://eng.uber.com/michelangelo/) (Uber)
+* At train time: copy data into a local or networked **filesystem** 
 
 ### 1.4. Versioning 
 * [DVC](https://dvc.org/): Open source version control system for ML projects 
@@ -53,35 +58,38 @@ In the following, we will go through each module and recommend toolsets and fram
 - Training data may come from different sources: Stored data in db and object stores, log processing, outputs of other classifiers.
 - There are dependencies between tasks, one needs to kick off after its dependencies are finished. 
 * Workflows: 
-   * Airflow (most commonly used)
+   * [Airflow]("https://github.com/alirezadir/Production-Level-Deep-Learning/blob/master/) (most commonly used)
 
 ## 2. Development, Training, and Evaluation 
 ### 2.1. Software engineering
 * Editors:
    * Vim 
-   * VS Code 
+   * [VS Code](https://code.visualstudio.com/) (Recommended by the author)
      * Built in git staging and diff, Lint code, open projects remotely through ssh 
-   * Jupyter Notebooks: Great as starting points of the projects, hard to scale 
-   * Streamlit: interactive applets 
- * Compute recommendations:
-   * for solo/startup: 
+   * Jupyter Notebooks: Great as starting point of the projects, hard to scale 
+   * [Streamlit](https://streamlit.io/): interactive data science tool with applets
+ * Compute recommendations <sup>[1](#fsdl)</sup>:
+   * For solo/startup: 
      * Development: a 4x Turing-architecture PC
      * Training/Evaluation: Use the same 4x GPU PC. When running many experiments, either buy shared servers or use cloud instances.
-   * for larger companies: 
+   * For larger companies: 
      * Development: Buy a 4x Turing-architecture PC per ML scientist or let them use V100 instances
      * Training/Evaluation: Use cloud instances with proper provisioning and handling of failures
 ### 2.2. Resource Management 
-  * allocating free resources to programs 
-  * Old school cluster job scheduler (Slurm)
-  * Docker + Kubernetes
-  * Kubeflow 
-  * Polyaxon (paid features)
-  
+  * Allocating free resources to programs 
+  * Resource management options: 
+    * Old school cluster job scheduler ( e.g. [Slurm](https://slurm.schedmd.com/) workload manager )
+    * Docker + Kubernetes
+    * Kubeflow 
+    * [Polyaxon](https://polyaxon.com/) (paid features)
+    
 ### 2.3. DL Frameworks 
-  * Unless having a good reason not to, use Tensorflow/Keras or PyTorch
+  * Unless having a good reason not to, use Tensorflow/Keras or PyTorch <sup>[1](#fsdl)</sup>
+
   <p align="center">
   <img src="https://github.com/alirezadir/Production-Level-Deep-Learning/blob/master/images/frameworks.png" title="" width="50%" height="50%">
    </p>
+
   
 ### 2.4. Experiment management
   * Tensorboard 
@@ -116,8 +124,8 @@ Machine Learning production software requires a more diverse set of test suites 
      * Training system tests: testing training pipeline
      * Validation tests: testing prediction system on validation set 
      * Functionality tests: testing prediction system on few important examples 
-* Continous Integration: Running tests after each new code change pushed to the repo 
- * SaaS for continous intergation: 
+* Continuous Integration: Running tests after each new code change pushed to the repo 
+ * SaaS for continuous integration: 
    * CircleCI, Travis 
    * Jenkins, Buildkite
 
@@ -134,7 +142,7 @@ Machine Learning production software requires a more diverse set of test suites 
           * Containers 
               * Docker 
           * Container Orchestration:
-              * kubernetes (the most popular now)
+              * Kubernetes (the most popular now)
               * MESOS 
               * Marathon 
       * 3. Deploy code as a "serverless function"
@@ -193,12 +201,15 @@ Machine Learning production software requires a more diverse set of test suites 
 
 ## Other useful links: 
 * [Lessons learned from building practical deep learning systems](https://www.slideshare.net/xamat/lessons-learned-from-building-practical-deep-learning-systems)
-* 
+ 
 
 ## References: 
-1. [Full Stack Deep Learning](https://fullstackdeeplearning.com)
-2. [Pipeline.ai](https://pipeline.ai/)'s [Advanced KubeFlow Meetup](https://www.meetup.com/Advanced-KubeFlow/)
-3. TFX Presentation [TBA]
+
+<a name="fsdl">[1]</a>: [Full Stack Deep Learning Bootcamp](https://fullstackdeeplearning.com/)
+
+<a name="pipe">[2]</a>: [Advanced KubeFlow Workshop](https://www.meetup.com/Advanced-KubeFlow/) by [Pipeline.ai](https://pipeline.ai/)
+
+<a name="pipe">[3]</a>: TFX Presentation [TBA]
 
    
     
