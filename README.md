@@ -183,6 +183,7 @@ Machine Learning production software requires a more diverse set of test suites 
    * Core ML 
    * ML Kit 
    * FRITZ 
+   * OpenVINO
 * Model Conversion:
    * Open Neural Network Exchange (ONNX): open-source format for deep learning models 
 ## 4.6. All-in-one solutions
