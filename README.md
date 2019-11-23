@@ -1,4 +1,6 @@
-# A Guideline to Production Level Deep Learning [*Under developement*]
+# :bulb: A Guide to Production Level Deep Learning :clapper: :scroll:  :ferry:
+[*NOTE: This repo is still under developement*]
+
 Deploying deep learning models in production could be challenging, as it's far beyond just training models with good perfromance. As you can see in the following figure, there are several components that need to be properly designed and developed in order to deploy a production level deep learning system:
 
 <p align="center">
@@ -206,7 +208,7 @@ Machine Learning production software requires a more diverse set of test suites 
    * Determined AI 
    * Domino data lab 
 <p align="center">
-   <img src="https://github.com/alirezadir/Production-Level-Deep-Learning/blob/master/images/infra-cmp.png" title="" width="85%" height="85%">
+   <img src="https://github.com/alirezadir/Production-Level-Deep-Learning/blob/master/images/infra-cmp.png" title="" width="95%" height="95%">
 </p>
 
 ## Other useful links: 
