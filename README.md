@@ -55,24 +55,25 @@ by active learning (by developers of Spacy), text and image
 * [Dolt](https://www.liquidata.co/): versioning for SQL database 
     
 ### 1.5. Processing 
-- Training data may come from different sources: Stored data in db and object stores, log processing, outputs of other classifiers.
-- There are dependencies between tasks, one needs to kick off after its dependencies are finished. 
+- Training data for production models may come from different sources, including *Stored data in db and object stores*, *log processing*, and *outputs of other classifiers*.
+- There are dependencies between tasks, each needs to be kicked off after its dependencies are finished. For example, training on new log data, requires a preprocessing step before training. Hence workflows become pretty essential in this regard.  
 * Workflows: 
    * [Airflow]("https://github.com/alirezadir/Production-Level-Deep-Learning/blob/master/) (most commonly used)
 
 ## 2. Development, Training, and Evaluation 
 ### 2.1. Software engineering
 * Editors:
-   * Vim 
+   * Vim
+   * Emacs  
    * [VS Code](https://code.visualstudio.com/) (Recommended by the author)
      * Built in git staging and diff, Lint code, open projects remotely through ssh 
    * Jupyter Notebooks: Great as starting point of the projects, hard to scale 
    * [Streamlit](https://streamlit.io/): interactive data science tool with applets
  * Compute recommendations <sup>[1](#fsdl)</sup>:
-   * For solo/startup: 
+   * For *individuals* or *startups*: 
      * Development: a 4x Turing-architecture PC
      * Training/Evaluation: Use the same 4x GPU PC. When running many experiments, either buy shared servers or use cloud instances.
-   * For larger companies: 
+   * For *large companies:* 
      * Development: Buy a 4x Turing-architecture PC per ML scientist or let them use V100 instances
      * Training/Evaluation: Use cloud instances with proper provisioning and handling of failures
 ### 2.2. Resource Management 
@@ -84,25 +85,33 @@ by active learning (by developers of Spacy), text and image
     * [Polyaxon](https://polyaxon.com/) (paid features)
     
 ### 2.3. DL Frameworks 
-  * Unless having a good reason not to, use Tensorflow/Keras or PyTorch <sup>[1](#fsdl)</sup>
+  * Unless having a good reason not to, use Tensorflow/Keras or PyTorch. <sup>[1](#fsdl)</sup> 
+  * The following figure shows a comparison between different frameworks on how they stand for *"developement"* and *"production"*.  
 
   <p align="center">
-  <img src="https://github.com/alirezadir/Production-Level-Deep-Learning/blob/master/images/frameworks.png" title="" width="50%" height="50%">
+  <img src="https://github.com/alirezadir/Production-Level-Deep-Learning/blob/master/images/frameworks.png" title="" width="45%" height="45%">
    </p>
 
   
 ### 2.4. Experiment management
-  * Tensorboard 
-  * Losswise (Monitoring for ML)
-  * Comet.ml 
-  * Weights & Biases
-  * MLFlow tracking 
+
+* Development, training, and evaluation strategy:
+  * Always start **simple** 
+    * Train a small model on a small batch. Only if it works, scale to larger data and models, and hyperparameter tuning!  
+  * Experiment management tools: 
+  * [Tensorboard](https://www.tensorflow.org/tensorboard)
+      * provides the visualization and tooling needed for ML experimentation  
+  * [Losswise](https://losswise.com/) (Monitoring for ML)
+  * [Comet](https://www.comet.ml/): lets you track code, experiments, and results on ML projects
+  * [Weights & Biases](https://www.wandb.com/): Record and visualize every detail of your research with easy collaboration 
+  * [MLFlow Tracking](https://www.mlflow.org/docs/latest/tracking.html#tracking): for logging parameters, code versions, metrics, and output files, and  visualization of the results. 
   
 ### 2.5. Hyperparameter Tuning 
-  * Hyperas 
-  * SIGOPT 
-  * Ray - Tune 
-  * Weights & Biases
+  * [Hyperas](https://maxpumperla.com/hyperas/): a simple wrapper around hyperopt for Keras, with a simple template notation to define hyper-parameter ranges to tune.
+  * [SIGOPT](https://sigopt.com/):  a scalable, enterprise-grade optimization platform 
+  * [Ray-Tune](https://github.com/ray-project/ray/tree/master/python/ray/tune): A scalable research platform for distributed model selection (with a focus on deep learning and deep reinforcement learning) 
+  * [Sweeps](https://docs.wandb.com/library/sweeps) from [Weights & Biases](https://www.wandb.com/): Parameters are not explicitly specified by a developer. Instead they are approximated and learned by a machine learning model.
+
 ### 2.6. Distributed Training 
   * Data parallelism: Use it when iteration time is too long (both tensorflow and PyTorch support)
   * Model parallelism: when model does not fit on a single GPU 
