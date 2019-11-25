@@ -45,7 +45,7 @@ by active learning (by developers of Spacy), text and image
 ### 1.3. Data Storage 
 * Data storage options: 
   * **Object store**: Store binary data (images, sound files, compressed texts) 
-    * [Aamzon S3](https://aws.amazon.com/s3/) 
+    * [Amazon S3](https://aws.amazon.com/s3/) 
     * [Ceph](https://ceph.io/) Object Store
   * **Database**: Store metadata (file paths, labels, user activity, etc). 
     * [Postgres](https://www.postgresql.org/) is the right choice for most of applications, with the best-in-class SQL and great support for unstructured JSON. 
