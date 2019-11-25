@@ -17,15 +17,16 @@ The following figure represent a high level overview of different components in 
 </p>
 In the following, we will go through each module and recommend toolsets and frameworks as well as best practices from practitioners that fit each component. 
 
+# Full stack pipeline 
 ## 1. Data Management 
-### 1.1. Data Sources 
+### 1.1 Data Sources 
 * Supervised deep learning requires a lot of labeled data
 * Labeling own data is costly! 
 * Here are some resources for data: 
   * Open source data (good to start with, but not an advantage) 
   * Data augmentation (a MUST for computer vision, an option for NLP)
   * Synthetic data (almost always worth starting with, esp. in NLP)
-### 1.2. Data Labeling 
+### 1.2  Data Labeling 
 * Requires: separate software stack (labeling platforms), temporary labor, and QC
 * Sources of labor for labeling: 
   * Crowdsourcing (Mechanical Turk): cheap and scalable, less reliable, needs QC
@@ -50,9 +51,10 @@ by active learning (by developers of Spacy), text and image
     * [Postgres](https://www.postgresql.org/) is the right choice for most of applications, with the best-in-class SQL and great support for unstructured JSON. 
   * **Data Lake**: to aggregate features which are not obtainable from database (e.g. logs)
     * [Amazon Redshift](https://aws.amazon.com/redshift/)
-  * **Feature Store**: storage and access of machine learning features
+  * **Feature Store**: store, access, and share machine learning features 
+ (Feature extraction could be computationally expensive and nearly impossible to scale, hence re-using features by different models and teams is a key to high performance ML teams). 
     * [FEAST](https://github.com/gojek/feast) (Google cloud, Open Source)
-    * [Michelangelo](https://eng.uber.com/michelangelo/) (Uber)
+    * [Michelangelo Palette](https://eng.uber.com/michelangelo/) (Uber)
 * Suggestion: At training time, copy data into a local or networked **filesystem** (NFS). <sup>[1](#fsdl)</sup> 
 
 ### 1.4. Data Versioning 
@@ -69,6 +71,11 @@ by active learning (by developers of Spacy), text and image
 - Makefiles are not scalable. "Workflow manager"s become pretty essential in this regard.
 - Workflow managers: 
    * [Airflow](https://airflow.apache.org/) by Airbnb: Dynamic, extensible, elegant, and scalable (the most commonly used)
+      * DAG workflow 
+      * Robust conditional execution: retry in case of failure  
+      * Pusher supports docker images with tensorflow serving 
+      * Whole workflow in a single .py file 
+
    * [Luigi](https://github.com/spotify/luigi) by Spotify
 
 ## 2. Development, Training, and Evaluation 
@@ -121,6 +128,7 @@ by active learning (by developers of Spacy), text and image
   * [MLFlow Tracking](https://www.mlflow.org/docs/latest/tracking.html#tracking): for logging parameters, code versions, metrics, and output files, and  visualization of the results. 
   
 ### 2.5. Hyperparameter Tuning 
+  * [Katib](https://github.com/kubeflow/katib): Kubernete's Native System for Hyperparameter Tuning and Neural Architecture Search, inspired by [Google vizier](https://static.googleusercontent.com/media/research.google.com/ja//pubs/archive/bcb15507f4b52991a0783013df4222240e942381.pdf) and supports multiple ML/DL frameworks (e.g. TensorFlow, MXNet, and PyTorch). 
   * [Hyperas](https://maxpumperla.com/hyperas/): a simple wrapper around hyperopt for Keras, with a simple template notation to define hyper-parameter ranges to tune.
   * [SIGOPT](https://sigopt.com/):  a scalable, enterprise-grade optimization platform 
   * [Ray-Tune](https://github.com/ray-project/ray/tree/master/python/ray/tune): A scalable research platform for distributed model selection (with a focus on deep learning and deep reinforcement learning) 
@@ -185,8 +193,12 @@ Machine Learning production software requires a more diverse set of test suites 
       * GPU inference: 
          * TF serving or Clipper 
          * Adaptive batching is useful 
+### 4.5 Service Mesh and Traffic Routing 
+* Transition from monolithic applications towards a distributed microservice architecture could be challenging. 
+* A **Service mesh** (consisting of a network of microservices) reduces the complexity of such deployments, and eases the strain on development teams.
+  * [Istio](https://istio.io/): a service mesh to ease creation of  a network of deployed services with load balancing, service-to-service authentication, monitoring, with few or no code changes in service code. 
 ### 4.4. Monitoring:
-* Purpose: 
+* Purpose of monitoring: 
    * Alerts for downtime, errors, and distribution shifts 
    * Catching service and data regressions 
 * Cloud providers solutions are decent 
@@ -209,7 +221,7 @@ Machine Learning production software requires a more diverse set of test suites 
    * OpenVINO
 * Model Conversion:
    * Open Neural Network Exchange (ONNX): open-source format for deep learning models 
-## 4.6. All-in-one solutions
+### 4.6. All-in-one solutions
    * Tensorflow Extended (TFX)
    * Michelangelo (Uber)
    * Google Cloud AI Platform 
@@ -223,6 +235,10 @@ Machine Learning production software requires a more diverse set of test suites 
    <img src="https://github.com/alirezadir/Production-Level-Deep-Learning/blob/master/images/infra-cmp.png" title="" width="95%" height="95%">
 </p>
 
+# Tensorflow Extended (TFX) 
+
+# Airflow and KubeFlow ML Pipelines 
+
 ## Other useful links: 
 * [Lessons learned from building practical deep learning systems](https://www.slideshare.net/xamat/lessons-learned-from-building-practical-deep-learning-systems)
 * [Machine Learning: The High Interest Credit Card of Technical Debt](https://ai.google/research/pubs/pub43146)
@@ -231,9 +247,9 @@ Machine Learning production software requires a more diverse set of test suites 
 
 ## References: 
 
-<a name="fsdl">[1]</a>: [Full Stack Deep Learning Bootcamp](https://fullstackdeeplearning.com/)
+<a name="fsdl">[1]</a>: [Full Stack Deep Learning Bootcamp](https://fullstackdeeplearning.com/), Nov 2019. 
 
-<a name="pipe">[2]</a>: [Advanced KubeFlow Workshop](https://www.meetup.com/Advanced-KubeFlow/) by [Pipeline.ai](https://pipeline.ai/)
+<a name="pipe">[2]</a>: [Advanced KubeFlow Workshop](https://www.meetup.com/Advanced-KubeFlow/) by [Pipeline.ai](https://pipeline.ai/), 2019. 
 
 <a name="pipe">[3]</a>: [TFX: Real World Machine Learning in Production](https://cdn.oreillystatic.com/en/assets/1/event/298/TFX_%20Production%20ML%20pipelines%20with%20TensorFlow%20Presentation.pdf)
 
