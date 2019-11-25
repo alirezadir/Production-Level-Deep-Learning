@@ -1,7 +1,7 @@
 # :bulb: A Guide to Production Level Deep Learning :clapper: :scroll:  :ferry:
-[*NOTE: This repo is still under developement*]
+[NOTE: This repo is still under development, and any feedback to make it better is welcome :blush: ]
 
-Deploying deep learning models in production could be challenging, as it's far beyond just training models with good perfromance. As you can see in the following figure, there are several components that need to be properly designed and developed in order to deploy a production level deep learning system:
+Deploying deep learning models in production could be challenging, as it's far beyond just training models with good performance. As you can see in the following figure, there are several components that need to be properly designed and developed in order to deploy a production level deep learning system:
 
 <p align="center">
 <img src="https://github.com/alirezadir/Production-Level-Deep-Learning/blob/master/images/components.png" title="" width="85%" height="85%">
@@ -9,25 +9,29 @@ Deploying deep learning models in production could be challenging, as it's far b
 
 This repo aims to serve as a an engineering guideline for building production-level deep learning systems to be deployed in real world applications. 
 
-(*The material presented here is moslty borrowed from [Full Stack Deep Learning Bootcamp](https://fullstackdeeplearning.com) (by [Pieter Abbeel](https://people.eecs.berkeley.edu/~pabbeel/), [Josh Tobin](http://josh-tobin.com/), and [Sergey Karayev](https://sergeykarayev.com/)), [TFX workshop](https://conferences.oreilly.com/tensorflow/tf-ca/public/schedule/detail/79327) by [Robert Crowe](https://www.linkedin.com/in/robert-crowe/), and [Pipeline.ai](https://pipeline.ai/)'s [Advanced KubeFlow Meetup](https://www.meetup.com/Advanced-KubeFlow/) by [Chris Fregly](https://www.linkedin.com/in/cfregly/).* )
+The material presented here is mostly borrowed from [Full Stack Deep Learning Bootcamp](https://fullstackdeeplearning.com) (by [Pieter Abbeel](https://people.eecs.berkeley.edu/~pabbeel/) at UC Berkeley, [Josh Tobin](http://josh-tobin.com/) at OpenAI, and [Sergey Karayev](https://sergeykarayev.com/) at Turnitin), [TFX workshop](https://conferences.oreilly.com/tensorflow/tf-ca/public/schedule/detail/79327) by [Robert Crowe](https://www.linkedin.com/in/robert-crowe/), and [Pipeline.ai](https://pipeline.ai/)'s [Advanced KubeFlow Meetup](https://www.meetup.com/Advanced-KubeFlow/) by [Chris Fregly](https://www.linkedin.com/in/cfregly/).
 
 The following figure represent a high level overview of different components in a production level deep learning system:
 <p align="center">
 <img src="https://github.com/alirezadir/Production-Level-Deep-Learning/blob/master/images/infra_tooling.png" title="" width="95%" height="95%">
 </p>
-In the following, we will go through each module and recommend toolsets and frameworks as well as best practices from practioners that fit each component. 
+In the following, we will go through each module and recommend toolsets and frameworks as well as best practices from practitioners that fit each component. 
 
 ## 1. Data Management 
 ### 1.1. Data Sources 
-* Open source data (good to start with, not an advantage) 
-* Data augmentation 
-* Synthetic data 
-### 1.2. Labeling 
+* Supervised deep learning requires a lot of labeled data
+* Labeling own data is costly! 
+* Here are some resources for data: 
+  * Open source data (good to start with, but not an advantage) 
+  * Data augmentation (a MUST for computer vision, an option for NLP)
+  * Synthetic data (almost always worth starting with, esp. in NLP)
+### 1.2. Data Labeling 
+* Requires: separate software stack (labeling platforms), temporary labor, and QC
 * Sources of labor for labeling: 
-  * Crowdsourcing 
-  * Service companies 
-      * [FigureEight](https://www.figure-eight.com/) 
-  * Hiring annotators 
+  * Crowdsourcing (Mechanical Turk): cheap and scalable, less reliable, needs QC
+  * Hiring own annotators: less QC needed, expensive, slow to scale 
+  * Data labeling service companies:
+    * [FigureEight](https://www.figure-eight.com/)  
 * Labeling platforms: 
   * [Prodigy](https://prodi.gy/): An annotation tool powered
 by active learning (by developers of Spacy), text and image 
@@ -37,7 +41,7 @@ by active learning (by developers of Spacy), text and image
   * [Scale](https://scale.com/) AI data platform (computer vision & NLP)
 
     
-### 1.3. Storage 
+### 1.3. Data Storage 
 * Data storage options: 
   * **Object store**: Store binary data (images, sound files, compressed texts) 
     * [Aamzon S3](https://aws.amazon.com/s3/) 
@@ -49,26 +53,31 @@ by active learning (by developers of Spacy), text and image
   * **Feature Store**: storage and access of machine learning features
     * [FEAST](https://github.com/gojek/feast) (Google cloud, Open Source)
     * [Michelangelo](https://eng.uber.com/michelangelo/) (Uber)
-* At train time: copy data into a local or networked **filesystem** 
+* Suggestion: At training time, copy data into a local or networked **filesystem** (NFS). <sup>[1](#fsdl)</sup> 
 
-### 1.4. Versioning 
-* [DVC](https://dvc.org/): Open source version control system for ML projects 
-* [Pachyderm](https://www.pachyderm.com/): version control for data 
-* [Dolt](https://www.liquidata.co/): versioning for SQL database 
+### 1.4. Data Versioning 
+* It's a "MUST" for deployed ML models:  
+  **Deployed ML models are part code, part data**. <sup>[1](#fsdl)</sup>  No data versioning means no model versioning. 
+* Data versioning platforms: 
+  * [DVC](https://dvc.org/): Open source version control system for ML projects 
+  * [Pachyderm](https://www.pachyderm.com/): version control for data 
+  * [Dolt](https://www.liquidata.co/): versioning for SQL database 
     
-### 1.5. Processing 
+### 1.5. Data Processing 
 - Training data for production models may come from different sources, including *Stored data in db and object stores*, *log processing*, and *outputs of other classifiers*.
-- There are dependencies between tasks, each needs to be kicked off after its dependencies are finished. For example, training on new log data, requires a preprocessing step before training. Hence workflows become pretty essential in this regard.  
-* Workflows: 
-   * [Airflow]("https://github.com/alirezadir/Production-Level-Deep-Learning/blob/master/) (most commonly used)
+- There are dependencies between tasks, each needs to be kicked off after its dependencies are finished. For example, training on new log data, requires a preprocessing step before training. 
+- Makefiles are not scalable. "Workflow manager"s become pretty essential in this regard.
+- Workflow managers: 
+   * [Airflow](https://airflow.apache.org/) by Airbnb: Dynamic, extensible, elegant, and scalable (the most commonly used)
+   * [Luigi](https://github.com/spotify/luigi) by Spotify
 
 ## 2. Development, Training, and Evaluation 
 ### 2.1. Software engineering
+* Winner language: Python
 * Editors:
    * Vim
    * Emacs  
-   * [VS Code](https://code.visualstudio.com/) (Recommended by the author)
-     * Built in git staging and diff, Lint code, open projects remotely through ssh 
+   * [VS Code](https://code.visualstudio.com/) (Recommended by the author): Built-in git staging and diff, Lint code, open projects remotely through ssh 
    * Jupyter Notebooks: Great as starting point of the projects, hard to scale 
    * [Streamlit](https://streamlit.io/): interactive data science tool with applets
  * Compute recommendations <sup>[1](#fsdl)</sup>:
@@ -78,6 +87,9 @@ by active learning (by developers of Spacy), text and image
    * For *large companies:* 
      * Development: Buy a 4x Turing-architecture PC per ML scientist or let them use V100 instances
      * Training/Evaluation: Use cloud instances with proper provisioning and handling of failures
+ * Cloud Providers: 
+   * GCP: option to connect GPUs to any instance + has TPUs 
+   * AWS:  
 ### 2.2. Resource Management 
   * Allocating free resources to programs 
   * Resource management options: 
@@ -213,6 +225,7 @@ Machine Learning production software requires a more diverse set of test suites 
 
 ## Other useful links: 
 * [Lessons learned from building practical deep learning systems](https://www.slideshare.net/xamat/lessons-learned-from-building-practical-deep-learning-systems)
+* [Machine Learning: The High Interest Credit Card of Technical Debt](https://ai.google/research/pubs/pub43146)
  
 ## [Contributing](https://github.com/alirezadir/Production-Level-Deep-Learning/blob/master/CONTRIBUTING.md)
 
