@@ -55,6 +55,7 @@ by active learning (by developers of Spacy), text and image
  (Feature extraction could be computationally expensive and nearly impossible to scale, hence re-using features by different models and teams is a key to high performance ML teams). 
     * [FEAST](https://github.com/gojek/feast) (Google cloud, Open Source)
     * [Michelangelo Palette](https://eng.uber.com/michelangelo/) (Uber)
+    * [Hopsworks](https://github.com/logicalclocks/hopsworks) (Hopsworks, Open Source)    
 * Suggestion: At training time, copy data into a local or networked **filesystem** (NFS). <sup>[1](#fsdl)</sup> 
 
 ### 1.4. Data Versioning 
@@ -133,6 +134,7 @@ by active learning (by developers of Spacy), text and image
   * [Comet](https://www.comet.ml/): lets you track code, experiments, and results on ML projects
   * [Weights & Biases](https://www.wandb.com/): Record and visualize every detail of your research with easy collaboration 
   * [MLFlow Tracking](https://www.mlflow.org/docs/latest/tracking.html#tracking): for logging parameters, code versions, metrics, and output files as well as visualization of the results.
+  * [Hopsworks Experiments](https://github.com/logicalclocks/hopsworks): for logging hyperparameters, results, notebooks, datasets/features used for training, and any output files/images.
     * Automatic experiment tracking with one line of code in python
     * Side by side comparison of experiments 
     * Hyper parameter tuning 
@@ -144,6 +146,7 @@ by active learning (by developers of Spacy), text and image
     * Random search 
     * Bayesian optimization
     * HyperBand
+    * Asynchronous Successive Halving
 
   * Platforms: 
     * [Katib](https://github.com/kubeflow/katib): Kubernete's Native System   for Hyperparameter Tuning and Neural Architecture Search, inspired by   [Google vizier](https://static.googleusercontent.com/media/ research.google.com/ja//pubs/archive/  bcb15507f4b52991a0783013df4222240e942381.pdf) and supports multiple ML/DL   frameworks (e.g. TensorFlow, MXNet, and PyTorch). 
@@ -152,14 +155,16 @@ by active learning (by developers of Spacy), text and image
     * [Ray-Tune](https://github.com/ray-project/ray/tree/master/python/ray/ tune): A scalable research platform for distributed model selection (with  a focus on deep learning and deep reinforcement learning) 
     * [Sweeps](https://docs.wandb.com/library/sweeps) from [Weights & Biases] (https://www.wandb.com/): Parameters are not explicitly specified by a   developer. Instead they are approximated and learned by a machine   learning model.
     * [Keras Tuner](https://github.com/keras-team/keras-tuner): A hyperparameter tuner for Keras, specifically for tf.keras with TensorFlow 2.0.
-
+    * [Maggy](https://github.com/logicalclocks/maggy): An asynchronous parallel hyperparameter tuning framework for TensorFlow/Keras, built on PySpark.
+    
 ### 2.6. Distributed Training 
   * Data parallelism: Use it when iteration time is too long (both tensorflow and PyTorch support)
   * Model parallelism: when model does not fit on a single GPU 
   * Other solutions: 
     * Ray 
     * Horovod
-
+    * [TensorFlow CollectiveAllReduce on PySpark](https://www.logicalclocks.com/blog/goodbye-horovod-hello-collectiveallreduce)
+    
 ## 3. Troubleshooting [TBD]
 
 ## 4. Testing and Deployment 
@@ -231,6 +236,7 @@ Machine Learning production software requires a more diverse set of test suites 
    * Catching service and data regressions 
 * Cloud providers solutions are decent 
 * [Kiali](https://kiali.io/):an observability console for Istio with service mesh configuration capabilities. It answers these questions: How are the microservices connected? How are they performing?
+* [Hopsworks](https://github.com/logicalclocks/hopsworks): online models have their predictions logged to a Kafka topic, and a Spark Streaming of Flink application monitors the model for concept drift, data drift, model drift, and other anomalies.
 
 #### Are we done?
 <p align="center">
