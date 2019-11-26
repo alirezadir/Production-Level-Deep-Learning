@@ -58,7 +58,19 @@ by active learning (by developers of Spacy), text and image
     * [Hopsworks](https://github.com/logicalclocks/hopsworks) (Hopsworks, Open Source)    
 * Suggestion: At training time, copy data into a local or networked **filesystem** (NFS). <sup>[1](#fsdl)</sup> 
 
-### 1.4. Data Versioning 
+### 1.4. File Formats
+* Different file formats may be used along different parts of the ML Pipeline, as shown in the figure below:
+<p align="center">
+<img src="https://github.com/alirezadir/Production-Level-Deep-Learning/blob/master/images/file-formats.png" title="" width="95%" height="95%">
+</p>
+
+* Feature engineering may be performed on legacy tabular file formats like .csv, or modern columnar formats like .parquet, .orc. Nested file formats like .json, .avro are less often used.
+
+* Models are typically trained with data in files, and different frameworks have different native file formats. TensorFlow favors .tfrecords, PyTorch favors .npy, Scikit-Learn favors .csv files. Uber released .petastorm as a columnar file format with native readers for TensorFlow/Keras and PyTorch.
+
+* File formats for model serving include: .pb (TensorFlow), .onnx (framework independent), .pkl (Scikit-Learn - picked python objects), and legacy formats such as .pmml.
+
+### 1.5. Data Versioning 
 * It's a "MUST" for deployed ML models:  
   **Deployed ML models are part code, part data**. <sup>[1](#fsdl)</sup>  No data versioning means no model versioning. 
 * Data versioning platforms: 
@@ -66,7 +78,7 @@ by active learning (by developers of Spacy), text and image
   * [Pachyderm](https://www.pachyderm.com/): version control for data 
   * [Dolt](https://www.liquidata.co/): versioning for SQL database 
     
-### 1.5. Data Processing 
+### 1.6. Data Processing 
 * Training data for production models may come from different sources, including *Stored data in db and object stores*, *log processing*, and *outputs of other classifiers*.
 * There are dependencies between tasks, each needs to be kicked off after its dependencies are finished. For example, training on new log data, requires a preprocessing step before training. 
 * Makefiles are not scalable. "Workflow manager"s become pretty essential in this regard.
