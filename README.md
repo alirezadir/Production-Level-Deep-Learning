@@ -1,17 +1,17 @@
 # :bulb: A Guide to Production Level Deep Learning :clapper: :scroll:  :ferry:
 [NOTE: This repo is still under development, and any feedback to make it better is welcome :blush: ]
 
-Deploying deep learning models in production could be challenging, as it's far beyond just training models with good performance. As you can see in the following figure, there are several components that need to be properly designed and developed in order to deploy a production level deep learning system:
+Deploying deep learning models in production can be challenging, as it is far beyond training models with good performance. Several distinct components need to be designed and developed in order to deploy a production level deep learning system (seen below):
 
 <p align="center">
 <img src="https://github.com/alirezadir/Production-Level-Deep-Learning/blob/master/images/components.png" title="" width="85%" height="85%">
 </p>
 
-This repo aims to serve as a an engineering guideline for building production-level deep learning systems to be deployed in real world applications. 
+This repo aims to be an engineering guideline for building production-level deep learning systems which will be deployed in real world applications. 
 
-The material presented here is mostly borrowed from [Full Stack Deep Learning Bootcamp](https://fullstackdeeplearning.com) (by [Pieter Abbeel](https://people.eecs.berkeley.edu/~pabbeel/) at UC Berkeley, [Josh Tobin](http://josh-tobin.com/) at OpenAI, and [Sergey Karayev](https://sergeykarayev.com/) at Turnitin), [TFX workshop](https://conferences.oreilly.com/tensorflow/tf-ca/public/schedule/detail/79327) by [Robert Crowe](https://www.linkedin.com/in/robert-crowe/), and [Pipeline.ai](https://pipeline.ai/)'s [Advanced KubeFlow Meetup](https://www.meetup.com/Advanced-KubeFlow/) by [Chris Fregly](https://www.linkedin.com/in/cfregly/).
+The material presented here is borrowed from [Full Stack Deep Learning Bootcamp](https://fullstackdeeplearning.com) (by [Pieter Abbeel](https://people.eecs.berkeley.edu/~pabbeel/) at UC Berkeley, [Josh Tobin](http://josh-tobin.com/) at OpenAI, and [Sergey Karayev](https://sergeykarayev.com/) at Turnitin), [TFX workshop](https://conferences.oreilly.com/tensorflow/tf-ca/public/schedule/detail/79327) by [Robert Crowe](https://www.linkedin.com/in/robert-crowe/), and [Pipeline.ai](https://pipeline.ai/)'s [Advanced KubeFlow Meetup](https://www.meetup.com/Advanced-KubeFlow/) by [Chris Fregly](https://www.linkedin.com/in/cfregly/).
 
-The following figure represent a high level overview of different components in a production level deep learning system:
+The following figure represents a high level overview of different components in a production level deep learning system:
 <p align="center">
 <img src="https://github.com/alirezadir/Production-Level-Deep-Learning/blob/master/images/infra_tooling.png" title="" width="95%" height="95%">
 </p>
