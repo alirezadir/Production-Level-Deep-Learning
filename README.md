@@ -4,7 +4,7 @@
 Deploying deep learning models in production could be challenging, as it's far beyond just training models with good performance. As you can see in the following figure, there are several components that need to be properly designed and developed in order to deploy a production level deep learning system:
 
 <p align="center">
-<img src="https://github.com/alirezadir/Production-Level-Deep-Learning/blob/master/images/components.png" title="" width="85%" height="85%">
+<img src="https://github.com/alirezadir/Production-Level-Deep-Learning/blob/master/images/components.png" title="" width="95%" height="95%">
 </p>
 
 This repo aims to serve as an engineering guideline for building production-level deep learning systems to be deployed in real world applications. 
@@ -69,14 +69,18 @@ by active learning (by developers of Spacy), text and image
 * Training data for production models may come from different sources, including *Stored data in db and object stores*, *log processing*, and *outputs of other classifiers*.
 * There are dependencies between tasks, each needs to be kicked off after its dependencies are finished. For example, training on new log data, requires a preprocessing step before training. 
 * Makefiles are not scalable. "Workflow manager"s become pretty essential in this regard.
-* **Workflow orchestration:** 
+* **Workflow orchestration:**
+  * [Luigi](https://github.com/spotify/luigi) by Spotify
   * [Airflow](https://airflow.apache.org/) by Airbnb: Dynamic, extensible, elegant, and scalable (the most widely used)
       * DAG workflow 
       * Robust conditional execution: retry in case of failure  
       * Pusher supports docker images with tensorflow serving 
       * Whole workflow in a single .py file 
 
-   * [Luigi](https://github.com/spotify/luigi) by Spotify
+<p align="center">
+  <img src="https://github.com/alirezadir/Production-Level-Deep-Learning/blob/master/images/airflow_pipe.png" title="" width="65%" height="65%">
+   </p>
+   
 
 ## 2. Development, Training, and Evaluation 
 ### 2.1. Software engineering
@@ -113,7 +117,7 @@ by active learning (by developers of Spacy), text and image
   * The following figure shows a comparison between different frameworks on how they stand for *"developement"* and *"production"*.  
 
   <p align="center">
-  <img src="https://github.com/alirezadir/Production-Level-Deep-Learning/blob/master/images/frameworks.png" title="" width="45%" height="45%">
+  <img src="https://github.com/alirezadir/Production-Level-Deep-Learning/blob/master/images/frameworks.png" title="" width="95%" height="95%">
    </p>
 
   
@@ -133,8 +137,7 @@ by active learning (by developers of Spacy), text and image
     * Side by side comparison of experiments 
     * Hyper parameter tuning 
     * Supports Kubernetes based jobs 
- 
-  
+    
 ### 2.5. Hyperparameter Tuning 
   * Approaches: 
     * Grid search 
@@ -227,8 +230,12 @@ Machine Learning production software requires a more diverse set of test suites 
    * Alerts for downtime, errors, and distribution shifts 
    * Catching service and data regressions 
 * Cloud providers solutions are decent 
-* [Kiali](https://kiali.io/):an observability console for Istio with service mesh configuration capabilities. It answers these questions: How are the microservices connected? How are they performing
+* [Kiali](https://kiali.io/):an observability console for Istio with service mesh configuration capabilities. It answers these questions: How are the microservices connected? How are they performing?
 
+#### Are we done?
+<p align="center">
+   <img src="https://github.com/alirezadir/Production-Level-Deep-Learning/blob/master/images/post-deploy.png" title="" width="65%" height="65%">
+</p>
 
 ### 4.5. Deploying on Embedded and Mobile Devices  
 * Main challenge: memory footprint and compute constraints 
@@ -258,12 +265,21 @@ Machine Learning production software requires a more diverse set of test suites 
    * Determined AI 
    * Domino data lab 
 <p align="center">
-   <img src="https://github.com/alirezadir/Production-Level-Deep-Learning/blob/master/images/infra-cmp.png" title="" width="95%" height="95%">
+   <img src="https://github.com/alirezadir/Production-Level-Deep-Learning/blob/master/images/infra-cmp.png" title="" width="100%" height="100%">
 </p>
 
 # Tensorflow Extended (TFX) 
 
+<p align="center">
+<img src="https://github.com/alirezadir/Production-Level-Deep-Learning/blob/master/images/tfx_config.png" title="" width="95%" height="95%">
+</p>
+
 # Airflow and KubeFlow ML Pipelines 
+
+<p align="center">
+    <img src="https://github.com/alirezadir/Production-Level-Deep-Learning/blob/master/images/kubeflow_pipe.png" title="" width="45%" height="45%">
+</p>
+
 
 ## Other useful links: 
 * [Lessons learned from building practical deep learning systems](https://www.slideshare.net/xamat/lessons-learned-from-building-practical-deep-learning-systems)
