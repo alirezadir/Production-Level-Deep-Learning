@@ -7,7 +7,7 @@ Deploying deep learning models in production could be challenging, as it's far b
 <img src="https://github.com/alirezadir/Production-Level-Deep-Learning/blob/master/images/components.png" title="" width="85%" height="85%">
 </p>
 
-This repo aims to serve as a an engineering guideline for building production-level deep learning systems to be deployed in real world applications. 
+This repo aims to serve as an engineering guideline for building production-level deep learning systems to be deployed in real world applications. 
 
 The material presented here is mostly borrowed from [Full Stack Deep Learning Bootcamp](https://fullstackdeeplearning.com) (by [Pieter Abbeel](https://people.eecs.berkeley.edu/~pabbeel/) at UC Berkeley, [Josh Tobin](http://josh-tobin.com/) at OpenAI, and [Sergey Karayev](https://sergeykarayev.com/) at Turnitin), [TFX workshop](https://conferences.oreilly.com/tensorflow/tf-ca/public/schedule/detail/79327) by [Robert Crowe](https://www.linkedin.com/in/robert-crowe/), and [Pipeline.ai](https://pipeline.ai/)'s [Advanced KubeFlow Meetup](https://www.meetup.com/Advanced-KubeFlow/) by [Chris Fregly](https://www.linkedin.com/in/cfregly/).
 
@@ -66,11 +66,11 @@ by active learning (by developers of Spacy), text and image
   * [Dolt](https://www.liquidata.co/): versioning for SQL database 
     
 ### 1.5. Data Processing 
-- Training data for production models may come from different sources, including *Stored data in db and object stores*, *log processing*, and *outputs of other classifiers*.
-- There are dependencies between tasks, each needs to be kicked off after its dependencies are finished. For example, training on new log data, requires a preprocessing step before training. 
-- Makefiles are not scalable. "Workflow manager"s become pretty essential in this regard.
-- Workflow managers: 
-   * [Airflow](https://airflow.apache.org/) by Airbnb: Dynamic, extensible, elegant, and scalable (the most commonly used)
+* Training data for production models may come from different sources, including *Stored data in db and object stores*, *log processing*, and *outputs of other classifiers*.
+* There are dependencies between tasks, each needs to be kicked off after its dependencies are finished. For example, training on new log data, requires a preprocessing step before training. 
+* Makefiles are not scalable. "Workflow manager"s become pretty essential in this regard.
+* **Workflow orchestration:** 
+  * [Airflow](https://airflow.apache.org/) by Airbnb: Dynamic, extensible, elegant, and scalable (the most widely used)
       * DAG workflow 
       * Robust conditional execution: retry in case of failure  
       * Pusher supports docker images with tensorflow serving 
@@ -85,7 +85,10 @@ by active learning (by developers of Spacy), text and image
    * Vim
    * Emacs  
    * [VS Code](https://code.visualstudio.com/) (Recommended by the author): Built-in git staging and diff, Lint code, open projects remotely through ssh 
-   * Jupyter Notebooks: Great as starting point of the projects, hard to scale 
+   * Notebooks: Great as starting point of the projects, hard to scale (fun fact: Netflix’s Notebook-Driven Architecture is an exception, which is entirely based on [nteract](https://nteract.io/) suites). 
+      * [nteract](https://nteract.io/): a next-gen React-based UI for Jupyter notebooks
+      * [Papermill](https://github.com/nteract/papermill): is an [nteract](https://nteract.io/) library built for *parameterizing*, *executing*, and *analyzing* Jupyter Notebooks.
+      * [Commuter](https://github.com/nteract/commuter): another [nteract](https://nteract.io/) project which provides a read-only display of notebooks (e.g. from S3 buckets).
    * [Streamlit](https://streamlit.io/): interactive data science tool with applets
  * Compute recommendations <sup>[1](#fsdl)</sup>:
    * For *individuals* or *startups*: 
@@ -125,14 +128,27 @@ by active learning (by developers of Spacy), text and image
   * [Losswise](https://losswise.com/) (Monitoring for ML)
   * [Comet](https://www.comet.ml/): lets you track code, experiments, and results on ML projects
   * [Weights & Biases](https://www.wandb.com/): Record and visualize every detail of your research with easy collaboration 
-  * [MLFlow Tracking](https://www.mlflow.org/docs/latest/tracking.html#tracking): for logging parameters, code versions, metrics, and output files, and  visualization of the results. 
+  * [MLFlow Tracking](https://www.mlflow.org/docs/latest/tracking.html#tracking): for logging parameters, code versions, metrics, and output files as well as visualization of the results.
+    * Automatic experiment tracking with one line of code in python
+    * Side by side comparison of experiments 
+    * Hyper parameter tuning 
+    * Supports Kubernetes based jobs 
+ 
   
 ### 2.5. Hyperparameter Tuning 
-  * [Katib](https://github.com/kubeflow/katib): Kubernete's Native System for Hyperparameter Tuning and Neural Architecture Search, inspired by [Google vizier](https://static.googleusercontent.com/media/research.google.com/ja//pubs/archive/bcb15507f4b52991a0783013df4222240e942381.pdf) and supports multiple ML/DL frameworks (e.g. TensorFlow, MXNet, and PyTorch). 
-  * [Hyperas](https://maxpumperla.com/hyperas/): a simple wrapper around hyperopt for Keras, with a simple template notation to define hyper-parameter ranges to tune.
-  * [SIGOPT](https://sigopt.com/):  a scalable, enterprise-grade optimization platform 
-  * [Ray-Tune](https://github.com/ray-project/ray/tree/master/python/ray/tune): A scalable research platform for distributed model selection (with a focus on deep learning and deep reinforcement learning) 
-  * [Sweeps](https://docs.wandb.com/library/sweeps) from [Weights & Biases](https://www.wandb.com/): Parameters are not explicitly specified by a developer. Instead they are approximated and learned by a machine learning model.
+  * Approaches: 
+    * Grid search 
+    * Random search 
+    * Bayesian optimization
+    * HyperBand
+
+  * Platforms: 
+    * [Katib](https://github.com/kubeflow/katib): Kubernete's Native System   for Hyperparameter Tuning and Neural Architecture Search, inspired by   [Google vizier](https://static.googleusercontent.com/media/ research.google.com/ja//pubs/archive/  bcb15507f4b52991a0783013df4222240e942381.pdf) and supports multiple ML/DL   frameworks (e.g. TensorFlow, MXNet, and PyTorch). 
+    * [Hyperas](https://maxpumperla.com/hyperas/): a simple wrapper around  hyperopt for Keras, with a simple template notation to define  hyper-parameter ranges to tune.
+    * [SIGOPT](https://sigopt.com/):  a scalable, enterprise-grade  optimization platform 
+    * [Ray-Tune](https://github.com/ray-project/ray/tree/master/python/ray/ tune): A scalable research platform for distributed model selection (with  a focus on deep learning and deep reinforcement learning) 
+    * [Sweeps](https://docs.wandb.com/library/sweeps) from [Weights & Biases] (https://www.wandb.com/): Parameters are not explicitly specified by a   developer. Instead they are approximated and learned by a machine   learning model.
+    * [Keras Tuner](https://github.com/keras-team/keras-tuner): A hyperparameter tuner for Keras, specifically for tf.keras with TensorFlow 2.0.
 
 ### 2.6. Distributed Training 
   * Data parallelism: Use it when iteration time is too long (both tensorflow and PyTorch support)
@@ -151,14 +167,18 @@ Machine Learning production software requires a more diverse set of test suites 
    </p>
    
 * Unit and Integration Testing: 
-   * Types of test: 
+   * Types of tests: 
      * Training system tests: testing training pipeline
      * Validation tests: testing prediction system on validation set 
      * Functionality tests: testing prediction system on few important examples 
 * Continuous Integration: Running tests after each new code change pushed to the repo 
  * SaaS for continuous integration: 
-   * CircleCI, Travis 
-   * Jenkins, Buildkite
+    * [Argo](https://argoproj.github.io/): Open source Kubernetes native workflow engine for orchestrating parallel jobs (incudes workflows, events, CI and CD).
+    * [CircleCI](https://circleci.com/): Language-Inclusive Support, Custom Environments, Flexible Resource Allocation, used by instacart, Lyft, and StackShare.
+    * [Travis CI](https://travis-ci.org/)
+    * [Buildkite](https://buildkite.com/): Fast and stable builds, Open source agent runs on almost any machine and architecture, Freedom to use your own  tools and services
+    * Jenkins: Old school build system  
+
 
 ### 4.2. Web Depolyment
   * Consists of a **Prediction System** and a **Serving System**
@@ -185,14 +205,19 @@ Machine Learning production software requires a more diverse set of test suites 
          * Tensorflow serving 
          * MXNet Model server 
          * Clipper (Berkeley)
-         * SaaS solutions (Seldon, Algorithma)
-   * Decision making: 
+         * SaaS solutions
+            * [Seldon](https://www.seldon.io/): serve and scale models built in any framework on Kubernetes
+            * [Algorithmia](https://algorithmia.com/)
+   * Decision making: CPU or GPU? 
       * CPU inference:
          * CPU inference is preferable if it meets the requirements.
          * Scale by adding more servers, or going serverless. 
       * GPU inference: 
          * TF serving or Clipper 
          * Adaptive batching is useful 
+  * (Bonus) Deploying Jupyter Notebooks:
+      * [Kubeflow Fairing](https://github.com/kubeflow/fairing) is a hybrid deployment package that let's you deploy your *Jupyter notebook* codes! 
+    
 ### 4.5 Service Mesh and Traffic Routing 
 * Transition from monolithic applications towards a distributed microservice architecture could be challenging. 
 * A **Service mesh** (consisting of a network of microservices) reduces the complexity of such deployments, and eases the strain on development teams.
@@ -202,6 +227,7 @@ Machine Learning production software requires a more diverse set of test suites 
    * Alerts for downtime, errors, and distribution shifts 
    * Catching service and data regressions 
 * Cloud providers solutions are decent 
+* [Kiali](https://kiali.io/):an observability console for Istio with service mesh configuration capabilities. It answers these questions: How are the microservices connected? How are they performing
 
 
 ### 4.5. Deploying on Embedded and Mobile Devices  
