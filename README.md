@@ -11,13 +11,39 @@ This repo aims to be an engineering guideline for building production-level deep
 
 The material presented here is borrowed from [Full Stack Deep Learning Bootcamp](https://fullstackdeeplearning.com) (by [Pieter Abbeel](https://people.eecs.berkeley.edu/~pabbeel/) at UC Berkeley, [Josh Tobin](http://josh-tobin.com/) at OpenAI, and [Sergey Karayev](https://sergeykarayev.com/) at Turnitin), [TFX workshop](https://conferences.oreilly.com/tensorflow/tf-ca/public/schedule/detail/79327) by [Robert Crowe](https://www.linkedin.com/in/robert-crowe/), and [Pipeline.ai](https://pipeline.ai/)'s [Advanced KubeFlow Meetup](https://www.meetup.com/Advanced-KubeFlow/) by [Chris Fregly](https://www.linkedin.com/in/cfregly/).
 
+# Machine Learning Projects
+- Fun! fact: 85% of AI projects fail. <sup>[1](#fsdl)</sup>
+  - Technically infeasible  or poorly scoped 
+  - Never make the leap to production 
+  - Unclear success criteria (metrics)
+  - Poor team management 
+  
+## ML Projects lifecycle
+[Figure]
+- Importance of understanding state of the art in your domain:
+  - Helps to understand what is possible 
+  - Helps to know what to try next 
+## Mental Model for ML project 
+  The two important factors to consider when defining and prioritizing ML projects:
+  - High Impact:
+    - Complex parts of your pipeline 
+    - Where "cheap prediction" is valuable
+    - Where automating complicated manual process is valuable 
+  - Low Cost:
+    - Cost is driven by: 
+      - Data availability 
+      - Performance requirements: costs tend to scale super-linearly in the accuracy requirement 
+      - Problem difficulty: 
+        - Some of the hard problems include: unsupervised learning, reinforcement learning, and certain categories of supervised learning 
+  
+# Full stack pipeline 
+
 The following figure represents a high level overview of different components in a production level deep learning system:
 <p align="center">
 <img src="https://github.com/alirezadir/Production-Level-Deep-Learning/blob/master/images/infra_tooling.png" title="" width="95%" height="95%">
 </p>
 In the following, we will go through each module and recommend toolsets and frameworks as well as best practices from practitioners that fit each component. 
 
-# Full stack pipeline 
 ## 1. Data Management 
 ### 1.1 Data Sources 
 * Supervised deep learning requires a lot of labeled data
