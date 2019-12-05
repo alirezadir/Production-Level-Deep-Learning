@@ -1,5 +1,5 @@
 # :bulb: A Guide to Production Level Deep Learning :clapper: :scroll:  :ferry:
-[NOTE: This repo is still under development, and any feedback to make it better is welcome :blush: ]
+[NOTE: This repo is still under development, and any feedback to make it better is welcome :blush:]
 
 Deploying deep learning models in production can be challenging, as it is far beyond training models with good performance. Several distinct components need to be designed and developed in order to deploy a production level deep learning system (seen below):
 
@@ -19,7 +19,9 @@ The material presented here is borrowed from [Full Stack Deep Learning Bootcamp]
   - Poor team management 
   
 ## ML Projects lifecycle
-[Figure]
+<p align="center">
+<img src="https://github.com/alirezadir/Production-Level-Deep-Learning/blob/master/images/lifecycle.png" title="" width="95%" height="95%">
+</p>
 - Importance of understanding state of the art in your domain:
   - Helps to understand what is possible 
   - Helps to know what to try next 
@@ -35,12 +37,16 @@ The material presented here is borrowed from [Full Stack Deep Learning Bootcamp]
       - Performance requirements: costs tend to scale super-linearly in the accuracy requirement 
       - Problem difficulty: 
         - Some of the hard problems include: unsupervised learning, reinforcement learning, and certain categories of supervised learning 
+<p align="center">
+<img src="https://github.com/alirezadir/Production-Level-Deep-Learning/blob/master/images/prioritize.png" title="" width="90%" height="90%">
+</p>
+In the
   
 # Full stack pipeline 
 
 The following figure represents a high level overview of different components in a production level deep learning system:
 <p align="center">
-<img src="https://github.com/alirezadir/Production-Level-Deep-Learning/blob/master/images/infra_tooling.png" title="" width="95%" height="95%">
+<img src="https://github.com/alirezadir/Production-Level-Deep-Learning/blob/master/images/infra_tooling.png" title="" width="100%" height="100%">
 </p>
 In the following, we will go through each module and recommend toolsets and frameworks as well as best practices from practitioners that fit each component. 
 
