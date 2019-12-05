@@ -1,5 +1,5 @@
 # :bulb: A Guide to Production Level Deep Learning :clapper: :scroll:  :ferry:
-[NOTE: This repo is still under development, and any feedback to make it better is welcome :blush:]
+[NOTE: This repo is still under development, and all feedback and contribution are very welcome :blush:]
 
 Deploying deep learning models in production can be challenging, as it is far beyond training models with good performance. Several distinct components need to be designed and developed in order to deploy a production level deep learning system (seen below):
 
@@ -11,21 +11,21 @@ This repo aims to be an engineering guideline for building production-level deep
 
 The material presented here is borrowed from [Full Stack Deep Learning Bootcamp](https://fullstackdeeplearning.com) (by [Pieter Abbeel](https://people.eecs.berkeley.edu/~pabbeel/) at UC Berkeley, [Josh Tobin](http://josh-tobin.com/) at OpenAI, and [Sergey Karayev](https://sergeykarayev.com/) at Turnitin), [TFX workshop](https://conferences.oreilly.com/tensorflow/tf-ca/public/schedule/detail/79327) by [Robert Crowe](https://www.linkedin.com/in/robert-crowe/), and [Pipeline.ai](https://pipeline.ai/)'s [Advanced KubeFlow Meetup](https://www.meetup.com/Advanced-KubeFlow/) by [Chris Fregly](https://www.linkedin.com/in/cfregly/).
 
-# I. Machine Learning Projects
+# Machine Learning Projects
 Fun :flushed: fact: **85% of AI projects fail**. <sup>[1](#fsdl)</sup> Potential reasons include: 
 - Technically infeasible  or poorly scoped 
 - Never make the leap to production 
 - Unclear success criteria (metrics)
 - Poor team management 
   
-## ML Projects lifecycle
+## 1. ML Projects lifecycle
 <p align="center">
-<img src="https://github.com/alirezadir/Production-Level-Deep-Learning/blob/master/images/lifecycle.png" title="" width="95%" height="95%">
-</p>
+<img src="https://github.com/alirezadir/Production-Level-Deep-Learning/blob/master/images/lifecycle.png" title="" width="95%" height="95%"></p>
+
 - Importance of understanding state of the art in your domain:
   - Helps to understand what is possible 
   - Helps to know what to try next 
-## Mental Model for ML project 
+## 2. Mental Model for ML project 
   The two important factors to consider when defining and prioritizing ML projects:
   - High Impact:
     - Complex parts of your pipeline 
@@ -300,13 +300,13 @@ Machine Learning production software requires a more diverse set of test suites 
 </p>
 
 # Tensorflow Extended (TFX) 
-
+[TBD]
 <p align="center">
 <img src="https://github.com/alirezadir/Production-Level-Deep-Learning/blob/master/images/tfx_config.png" title="" width="95%" height="95%">
 </p>
 
 # Airflow and KubeFlow ML Pipelines 
-
+[TBD]
 <p align="center">
     <img src="https://github.com/alirezadir/Production-Level-Deep-Learning/blob/master/images/kubeflow_pipe.png" title="" width="45%" height="45%">
 </p>
