@@ -65,6 +65,7 @@ In the following, we will go through each module and recommend toolsets and fram
   * Data labeling service companies:
     * [FigureEight](https://www.figure-eight.com/)  
 * Labeling platforms: 
+* * [Diffgram](https://diffgram.com/): Computer Vision, Training Data Software
   * [Prodigy](https://prodi.gy/): An annotation tool powered
 by active learning (by developers of Spacy), text and image 
   * [HIVE](https://thehive.ai/): AI as a Service platform for computer vision  
