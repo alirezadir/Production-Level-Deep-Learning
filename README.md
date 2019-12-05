@@ -11,12 +11,12 @@ This repo aims to be an engineering guideline for building production-level deep
 
 The material presented here is borrowed from [Full Stack Deep Learning Bootcamp](https://fullstackdeeplearning.com) (by [Pieter Abbeel](https://people.eecs.berkeley.edu/~pabbeel/) at UC Berkeley, [Josh Tobin](http://josh-tobin.com/) at OpenAI, and [Sergey Karayev](https://sergeykarayev.com/) at Turnitin), [TFX workshop](https://conferences.oreilly.com/tensorflow/tf-ca/public/schedule/detail/79327) by [Robert Crowe](https://www.linkedin.com/in/robert-crowe/), and [Pipeline.ai](https://pipeline.ai/)'s [Advanced KubeFlow Meetup](https://www.meetup.com/Advanced-KubeFlow/) by [Chris Fregly](https://www.linkedin.com/in/cfregly/).
 
-# Machine Learning Projects
-- Fun! fact: 85% of AI projects fail. <sup>[1](#fsdl)</sup>
-  - Technically infeasible  or poorly scoped 
-  - Never make the leap to production 
-  - Unclear success criteria (metrics)
-  - Poor team management 
+# I. Machine Learning Projects
+Fun :flushed: fact: **85% of AI projects fail**. <sup>[1](#fsdl)</sup> Potential reasons include: 
+- Technically infeasible  or poorly scoped 
+- Never make the leap to production 
+- Unclear success criteria (metrics)
+- Poor team management 
   
 ## ML Projects lifecycle
 <p align="center">
@@ -40,7 +40,6 @@ The material presented here is borrowed from [Full Stack Deep Learning Bootcamp]
 <p align="center">
 <img src="https://github.com/alirezadir/Production-Level-Deep-Learning/blob/master/images/prioritize.png" title="" width="90%" height="90%">
 </p>
-In the
   
 # Full stack pipeline 
 
