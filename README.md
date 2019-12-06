@@ -79,6 +79,7 @@ by active learning (by developers of Spacy), text and image
   * **Object store**: Store binary data (images, sound files, compressed texts) 
     * [Amazon S3](https://aws.amazon.com/s3/) 
     * [Ceph](https://ceph.io/) Object Store
+    * [Google Cloud Storage](https://cloud.google.com/storage/)
   * **Database**: Store metadata (file paths, labels, user activity, etc). 
     * [Postgres](https://www.postgresql.org/) is the right choice for most of applications, with the best-in-class SQL and great support for unstructured JSON. 
   * **Data Lake**: to aggregate features which are not obtainable from database (e.g. logs)
@@ -96,6 +97,7 @@ by active learning (by developers of Spacy), text and image
   * [DVC](https://dvc.org/): Open source version control system for ML projects 
   * [Pachyderm](https://www.pachyderm.com/): version control for data 
   * [Dolt](https://www.liquidata.co/): versioning for SQL database 
+  * [FloydHub Datasets](https://www.floydhub.com/floydhub/datasets)
     
 ### 1.5. Data Processing 
 * Training data for production models may come from different sources, including *Stored data in db and object stores*, *log processing*, and *outputs of other classifiers*.
@@ -108,6 +110,7 @@ by active learning (by developers of Spacy), text and image
       * Robust conditional execution: retry in case of failure  
       * Pusher supports docker images with tensorflow serving 
       * Whole workflow in a single .py file 
+  * [Dataflow](https://cloud.google.com/dataflow/) by Google Cloud Platform
 
 <p align="center">
   <img src="https://github.com/alirezadir/Production-Level-Deep-Learning/blob/master/images/airflow_pipe.png" title="" width="65%" height="65%">
@@ -135,7 +138,10 @@ by active learning (by developers of Spacy), text and image
      * Training/Evaluation: Use cloud instances with proper provisioning and handling of failures
  * Cloud Providers: 
    * GCP: option to connect GPUs to any instance + has TPUs 
+     * [Compute Engine](https://cloud.google.com/compute/) - allows for configuring your VM with GPUs
+     * [AI Platform Notebooks](https://cloud.google.com/ai-platform-notebooks/) - provides you with Jupyter Lab instances preconfigured with all the necessary libraries and CUDA drivers (has the option for customization as well)
    * AWS:  
+     * [EC2](https://aws.amazon.com/ec2/) - Similar to Compute Engine
 ### 2.2. Resource Management 
   * Allocating free resources to programs 
   * Resource management options: 
@@ -190,10 +196,12 @@ by active learning (by developers of Spacy), text and image
   * Data parallelism: Use it when iteration time is too long (both tensorflow and PyTorch support)
     * [Ray Distributed Training](https://ray.readthedocs.io/en/latest/distributed_training.html)
   * Model parallelism: when model does not fit on a single GPU 
+    * [ML Engine](https://cloud.google.com/ml-engine)
   * Other solutions: 
     * Horovod
 
 ## 3. Troubleshooting [TBD]
+  * [This Twitter thread](https://twitter.com/chipro/status/1189564204312711170?s=20) is a little list of all the good resources for this section
 
 ## 4. Testing and Deployment 
 ### 4.1. Testing and CI/CD
@@ -234,6 +242,7 @@ Machine Learning production software requires a more diverse set of test suites 
               * Marathon 
       * 3. Deploy code as a "serverless function"
       * 4. Deploy via a **model serving** solution
+      * 5. [BentoML](https://github.com/bentoml/BentoML) - it can ease the process of exposing your ML as a REST API
   * Model serving:
       * Specialized web deployment for ML models
       * Batches request for GPU inference 
@@ -263,6 +272,7 @@ Machine Learning production software requires a more diverse set of test suites 
    * Alerts for downtime, errors, and distribution shifts 
    * Catching service and data regressions 
 * Cloud providers solutions are decent 
+   * [Stackdriver](https://cloud.google.com/stackdriver/)
 * [Kiali](https://kiali.io/):an observability console for Istio with service mesh configuration capabilities. It answers these questions: How are the microservices connected? How are they performing?
 
 #### Are we done?
@@ -327,6 +337,3 @@ Machine Learning production software requires a more diverse set of test suites 
 <a name="pipe">[2]</a>: [Advanced KubeFlow Workshop](https://www.meetup.com/Advanced-KubeFlow/) by [Pipeline.ai](https://pipeline.ai/), 2019. 
 
 <a name="pipe">[3]</a>: [TFX: Real World Machine Learning in Production](https://cdn.oreillystatic.com/en/assets/1/event/298/TFX_%20Production%20ML%20pipelines%20with%20TensorFlow%20Presentation.pdf)
-
-   
-    
