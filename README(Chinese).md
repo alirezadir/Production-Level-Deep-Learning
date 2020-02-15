@@ -45,36 +45,36 @@
   
 # 全栈流水线
 
-下图高度概括了产品级深度学习系统相关的各个不同的组成模块：
+下图高度概括了产品级深度学习系统相关的各个不同的组成模块：  
 <p align="center">
 <img src="https://github.com/alirezadir/Production-Level-Deep-Learning/blob/master/images/infra_tooling.png" title="" width="100%" height="100%">
 </p>
-接下来，我们将会讲解每一个模块，以及从实践者出发推荐的适合该模块的工具集和框架。
-## 1. 数据管理
+接下来，我们将会讲解每一个模块，以及从实践者出发推荐的适合该模块的工具集和框架。  
+## 1. 数据管理 
 ### 1.1 数据来源 
-* 监督深度学习需要大量的打标签数据
+* 监督深度学习需要大量的打标签数据 
 * 对自己的数据打标签是很昂贵的！
 * 下面是一些可供选择的数据来源： 
-  * 开源数据（适合入门，但不适合进阶）
+  * 开源数据（适合入门，但不适合进阶） 
   * 数据增强（对于机器视觉是必选，对于NLP可选）  
   * 合成数据（入门首选，尤其是NLP领域） 
-### 1.2  数据标记
-* 要求：独立的软件栈（标签平台），临时工，以及质量控制
-* 人工打标签: 
-  * 众包：便宜，可扩展，可靠性较差，需要质量控制
-  * 招聘数据标记人员：质量较好，昂贵，扩展很慢 
-  * 数据标记服务公司:
-    * [FigureEight](https://www.figure-eight.com/)  
-* 标记平台: 
-  * [Diffgram](https://diffgram.com/): 训练数据软件（机器视觉）
-  * [Prodigy](https://prodi.gy/): 基于主动学习active learning实现（由Spacy的开发者编写），针对文字和图片构成的标记注释工具
-  * [HIVE](https://thehive.ai/): 针对机器视觉的AI服务平台 
-  * [Supervisely](https://supervise.ly/): 功能全面的机器视觉平台 
-  * [Labelbox](https://labelbox.com/): 针对机器视觉  
-  * [Scale](https://scale.com/) AI数据平台（针对机器学习和自然语言处理）
+### 1.2  数据标记 
+* 要求：独立的软件栈（标签平台），临时工，以及质量控制 
+* 人工打标签:  
+  * 众包：便宜，可扩展，可靠性较差，需要质量控制 
+  * 招聘数据标记人员：质量较好，昂贵，扩展很慢  
+  * 数据标记服务公司: 
+    * [FigureEight](https://www.figure-eight.com/)   
+* 标记平台:  
+  * [Diffgram](https://diffgram.com/): 训练数据软件（机器视觉） 
+  * [Prodigy](https://prodi.gy/): 基于主动学习active learning实现（由Spacy的开发者编写），针对文字和图片构成的标记注释工具 
+  * [HIVE](https://thehive.ai/): 针对机器视觉的AI服务平台  
+  * [Supervisely](https://supervise.ly/): 功能全面的机器视觉平台  
+  * [Labelbox](https://labelbox.com/): 针对机器视觉   
+  * [Scale](https://scale.com/) AI数据平台（针对机器学习和自然语言处理） 
 
-### 1.3. 数据存储
-* 可供选择的数据存储方案有：
+### 1.3. 数据存储 
+* 可供选择的数据存储方案有： 
   * **对象存储**: 存储二进制数据（图片，声音文件，压缩的文本）
     * [Amazon S3](https://aws.amazon.com/s3/) 
     * [Ceph](https://ceph.io/) Object Store
