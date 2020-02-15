@@ -1,4 +1,6 @@
 # :bulb: 产品级深度学习系统入门指南 :clapper: :scroll:  :ferry:
+> 翻译自：https://github.com/alirezadir/Production-Level-Deep-Learning/blob/master/README.md
+
 [NOTE: 本文还在逐步完善中，欢迎反馈和贡献 :blush:]
 
 部署产品级的深度学习模型充满挑战，其难度远远超过训练一个性能不俗的模型。为了部署一个产品级的深度学习系统，还需要设计和开发以下几个部分（见下图）：
@@ -330,3 +332,4 @@
 <a name="pipe">[3]</a>: [TFX: Real World Machine Learning in Production](https://cdn.oreillystatic.com/en/assets/1/event/298/TFX_%20Production%20ML%20pipelines%20with%20TensorFlow%20Presentation.pdf)
 
    
+    
