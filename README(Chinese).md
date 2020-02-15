@@ -10,23 +10,23 @@
 本文借鉴了如下文章：
  [Full Stack Deep Learning Bootcamp](https://fullstackdeeplearning.com) (by [Pieter Abbeel](https://people.eecs.berkeley.edu/~pabbeel/) at UC Berkeley, [Josh Tobin](http://josh-tobin.com/) at OpenAI, and [Sergey Karayev](https://sergeykarayev.com/) at Turnitin), [TFX workshop](https://conferences.oreilly.com/tensorflow/tf-ca/public/schedule/detail/79327) by [Robert Crowe](https://www.linkedin.com/in/robert-crowe/), and [Pipeline.ai](https://pipeline.ai/)'s [Advanced KubeFlow Meetup](https://www.meetup.com/Advanced-KubeFlow/) by [Chris Fregly](https://www.linkedin.com/in/cfregly/).
 
-# 机器学习项目
-···
-[译者注]原作者在文中既使用了Mechine Learning(机器学习)，又使用了Deep Learning(深度学习，大部分工具可以两者都适用)
-···
+# Machine Learning Projects 机器学习项目
+
+> [译者注]原作者在文中既使用了Mechine Learning(机器学习)，又使用了Deep Learning(深度学习，大部分工具可以两者都适用)
+
 有趣的真相 :flushed: fact: **85%的AI项目会失败**. <sup>[1](#fsdl)</sup> 潜在的原因如下： 
 - 技术上不可行，或者无法广泛应用 
 - 没能转化为产品 
 - 不清晰的成功标准或指标
 - 糟糕的团队管理 
-## 1. 机器学习项目的生命周期
+## 1. ML Projects lifecycle 机器学习项目的生命周期
 <p align="center">
 <img src="https://github.com/alirezadir/Production-Level-Deep-Learning/blob/master/images/lifecycle.png" title="" width="95%" height="95%"></p>
 
 - 了解你所在领域的技术现状的重要性:
   - 可以知道什么是可能可以实现的 
   - 可以知道下一步尝试的方向 
-## 2. 机器学习项目的心智模型
+## 2. Mental Model for ML project 机器学习项目的心智模型
 
   当对机器学习项目的重要性和紧急性排序时，需要考虑两个重要的因素：
   - 高收益:
@@ -43,22 +43,24 @@
 <img src="https://github.com/alirezadir/Production-Level-Deep-Learning/blob/master/images/prioritize.png" title="" width="90%" height="90%">
 </p>
   
-# 全栈流水线
+# Full stack pipeline 全栈流水线
 
 下图高度概括了产品级深度学习系统相关的各个不同的组成模块：  
+
 <p align="center">
 <img src="https://github.com/alirezadir/Production-Level-Deep-Learning/blob/master/images/infra_tooling.png" title="" width="100%" height="100%">
 </p>
 接下来，我们将会讲解每一个模块，以及从实践者出发推荐的适合该模块的工具集和框架。  
-## 1. 数据管理 
-### 1.1 数据来源 
+
+## 1. Data Management 数据管理 
+### 1.1 Data Sources 数据来源 
 * 监督深度学习需要大量的打标签数据 
 * 对自己的数据打标签是很昂贵的！
 * 下面是一些可供选择的数据来源： 
   * 开源数据（适合入门，但不适合进阶） 
   * 数据增强（对于机器视觉是必选，对于NLP可选）  
   * 合成数据（入门首选，尤其是NLP领域） 
-### 1.2  数据标记 
+### 1.2  Data Labeling 数据标记 
 * 要求：独立的软件栈（标签平台），临时工，以及质量控制 
 * 人工打标签:  
   * 众包：便宜，可扩展，可靠性较差，需要质量控制 
@@ -73,7 +75,7 @@
   * [Labelbox](https://labelbox.com/): 针对机器视觉   
   * [Scale](https://scale.com/) AI数据平台（针对机器学习和自然语言处理） 
 
-### 1.3. 数据存储 
+### 1.3. Data Storage 数据存储 
 * 可供选择的数据存储方案有： 
   * **对象存储**: 存储二进制数据（图片，声音文件，压缩的文本）
     * [Amazon S3](https://aws.amazon.com/s3/) 
@@ -87,7 +89,7 @@
     * [FEAST](https://github.com/gojek/feast) (Google cloud, 开源)
     * [Michelangelo Palette](https://eng.uber.com/michelangelo/) (Uber)
 * 建议: 在训练阶段，复制数据到本地文件系统或者**NFS**。 <sup>[1](#fsdl)</sup> 
-### 1.4. 数据版本管理 
+### 1.4. Data Versioning 数据版本管理 
 * 对于已部署的机器学习模型，“必须”有其对应的训练数据版本：
   **已部署的机器学习模型，由数据和代码共同组成**. <sup>[1](#fsdl)</sup>  没有数据版本的管理，就意味着没有模型版本的管理。
 * 数据版本管理平台: 
@@ -95,7 +97,7 @@
   * [Pachyderm](https://www.pachyderm.com/): 针对数据的版本管理 
   * [Dolt](https://www.liquidata.co/): 针对SQL数据库的版本管理
     
-### 1.5. 数据处理工作流
+### 1.5. Data Processing 数据处理工作流
 * 对于模型的训练数据可能来自于不同的数据源，包括：存储在数据库的数据, 包括 *存储在数据库的数据*, *日志数据*, 和*其他分类模型的输出*.
 * 在任务和任务之间有依赖，一个任务的开启需要另外一个任务的完结。比如，在一个新的日志数据上训练任务，必须在某个预处理流程之后进行。
 * Makefiles用来完成此工作比较流缺乏伸缩性，在这个场景下，工作流管理工具十分重要。
@@ -112,8 +114,8 @@
    </p>
    
 
-## 2. 开发，训练，模型评估
-### 2.1. 软件工程
+## 2. Development, Training, and Evaluation 开发，训练，模型评估
+### 2.1. Software engineering 软件工程
 * 编程语言大赢家：Python
 * 编辑器:
    * Vim
@@ -134,7 +136,7 @@
  * 使用云服务：
    * GCP: 可以选择将任何实例运行在GPU上，并且有TPU资源
    * AWS:  
-### 2.2. 计算资源管理
+### 2.2. Resource Management 资源管理
   * 给程序分配任意的计算资源
   * 如果选择计算资源管理，有如下选项: 
     * 传统的集群任务调度策略 ( e.g. [Slurm](https://slurm.schedmd.com/) workload manager )
@@ -166,7 +168,7 @@
     * 超参调优
     * 支持K8S
     
-### 2.5. Hyperparameter Tuning超参调优 
+### 2.5. Hyperparameter Tuning 超参调优 
   * 策略 
     * 网格搜索
     * 随机搜索 
@@ -189,10 +191,8 @@
   * 模型并行：当模型不适合于单个GPU时，使用这个方案
   * 其他方案：
     * Horovod
-    ···
-    [译者注]由于 TensorFlow 集群太不友好，业内也一直在尝试新的集群方案。
+    > [译者注]由于 TensorFlow 集群太不友好，业内也一直在尝试新的集群方案。
 2017 年 Facebook 发布了《Accurate, large minibatch SGD: Training ImageNet in 1 hour 》验证了大数据并行的高效性，同年百度发表了《Bringing HPC techniques to deep learning 》，验证了全新的梯度同步和权值更新算法的可行性。受这两篇论文的启发，Uber 开发了 Horovod 集群方案。
-    ···
 
 ## 3. Troubleshooting [TBD]排错[待完成]
 ## 4. Testing and Deployment 测试和部署
@@ -258,7 +258,7 @@
 * 从单机程序过渡到分布式微服务架构具有较大的挑战 
 * A **Service mesh** （由微服务和网格组成）减少了此类部署的复杂性，并降低了团队的工作量。
   * [Istio](https://istio.io/): 一种服务网格，通过负载均衡，服务间认证，监控来创建服务的网络，业务本身的代码只需要做很少的改动，或者不需要改动。
-### 4.4. Monitoring 监控：
+### 4.6. Monitoring 监控：
 * 监控的目的：
    * 停机，错误，漂移时发出告警
    * 捕获服务以及数据回归
@@ -269,18 +269,15 @@
    <img src="https://github.com/alirezadir/Production-Level-Deep-Learning/blob/master/images/post-deploy.png" title="" width="65%" height="65%">
 </p>
 
-### 4.5. Deploying on Embedded and Mobile Devices 部署在嵌入式和移动设备上 
+### 4.7. Deploying on Embedded and Mobile Devices 部署在嵌入式和移动设备上 
 * 主要的挑战：内存占用和算力限制
 * 解决方案: 
    * 模型量化
-   ···
-   [译者注]模型量化即以较低的推理精度损失将连续取值（或者大量可能的离散取值）的浮点型模型权重或流经模型的张量数据定点近似（通常为int8）为有限多个（或较少的）离散值的过程，它是以更少位数的数据类型用于近似表示32位有限范围浮点型数据的过程，而模型的输入输出依然是浮点型，从而达到减少模型尺寸大小、减少模型内存消耗及加快模型推理速度等目标。
-   ···
+   > [译者注]Quantization模型量化即以较低的推理精度损失将连续取值（或者大量可能的离散取值）的浮点型模型权重或流经模型的张量数据定点近似（通常为int8）为有限多个（或较少的）离散值的过程，它是以更少位数的数据类型用于近似表示32位有限范围浮点型数据的过程，而模型的输入输出依然是浮点型，从而达到减少模型尺寸大小、减少模型内存消耗及加快模型推理速度等目标。
    * 减少模型的尺寸
       * MobileNets 
    * 知识蒸馏
-   ···
-   [译者注]知识蒸馏（KD）是想将复杂模型（teacher）中的dark knowledge迁移到简单模型（student）中去，一般来说，teacher具有强大的能力和表现，而student则更为紧凑。通过知识蒸馏，希望student能尽可能逼近亦或是超过teacher，从而用更少的复杂度来获得类似的预测效果。Hinton在Distilling the Knowledge in a Neural Network中首次提出了知识蒸馏的概念，通过引入teacher的软目标（soft targets）以诱导学生网络的训练。
+   > [译者注]Knowledge Distillation知识蒸馏（KD）是想将复杂模型（teacher）中的dark knowledge迁移到简单模型（student）中去，一般来说，teacher具有强大的能力和表现，而student则更为紧凑。通过知识蒸馏，希望student能尽可能逼近亦或是超过teacher，从而用更少的复杂度来获得类似的预测效果。Hinton在Distilling the Knowledge in a Neural Network中首次提出了知识蒸馏的概念，通过引入teacher的软目标（soft targets）以诱导学生网络的训练。
    ···
       * DistillBERT (for NLP)
 * 针对嵌入式和移动设备的框架：
@@ -292,7 +289,7 @@
    * OpenVINO
 * 模型转换：
    * Open Neural Network Exchange (ONNX): 针对深度学习模型的开源格式化技术
-### 4.6. All-in-one solutions 一站式解决方案
+### 4.8. All-in-one solutions 一站式解决方案
    * Tensorflow Extended (TFX)
    * Michelangelo (Uber)
    * Google Cloud AI Platform 
@@ -307,9 +304,7 @@
 </p>
 
 # Tensorflow Extended (TFX) [TBD][待补充]
-···
-[译者注]tfx是构建在tf基础之上的一个包含了机器学习整个生命周期的完整系统，这个系统不只包含了tf所提供的模型训练等机器学习相关功能，还提供了如数据校验和验证、模型热启动、线上服务、模型发布等重要功能
-···
+> [译者注]tfx是构建在tf基础之上的一个包含了机器学习整个生命周期的完整系统，这个系统不只包含了tf所提供的模型训练等机器学习相关功能，还提供了如数据校验和验证、模型热启动、线上服务、模型发布等重要功能
 <p align="center">
 <img src="https://github.com/alirezadir/Production-Level-Deep-Learning/blob/master/images/tfx_config.png" title="" width="95%" height="95%">
 </p>
@@ -335,4 +330,3 @@
 <a name="pipe">[3]</a>: [TFX: Real World Machine Learning in Production](https://cdn.oreillystatic.com/en/assets/1/event/298/TFX_%20Production%20ML%20pipelines%20with%20TensorFlow%20Presentation.pdf)
 
    
-    
