@@ -1,5 +1,8 @@
 # :bulb: 产品级深度学习系统入门指南 :clapper: :scroll:  :ferry:
+> 原作者：Alireza Dirafzoon
 > 翻译自：https://github.com/alirezadir/Production-Level-Deep-Learning/blob/master/README.md
+> 译者：Liu Yun
+> 链接：https://github.com/liuyun1217/Production-Level-Deep-Learning
 
 [NOTE: 本文还在逐步完善中，欢迎反馈和贡献 :blush:]
 
@@ -33,7 +36,7 @@
   当对机器学习项目的重要性和紧急性排序时，需要考虑两个重要的因素：
   - 高收益:
     - 工作流中的复杂部分 
-    - ”廉价预测“的部分很重要
+    - 快速进行”廉价预测“（小的数据量，标签，计算量情况下，得到小模型进行简单的预测，能给工作开个好头）
     - 将复杂的手动处理过程进行自动化很有用   
   - 低成本:
     - 成本主要由以下几部分决定: 
@@ -175,7 +178,8 @@
     * 网格搜索
     * 随机搜索 
     * 贝叶斯优化
-    * HyperBand (and ASHA)
+    * HyperBand (以及ASHA，Asynchronous Successive Halving Algorithm 异步减半算法)
+  > Hyperband算法对 Jamieson & Talwlkar(2015)提出的SuccessiveHalving算法做了扩展。SuccessiveHalving算法：假设有nn组超参数组合，然后对这nn组超参数均匀地分配预算并进行验证评估，根据验证结果淘汰一半表现差的超参数组，然后重复迭代上述过程直到找到最终的一个最优超参数组合。
     * Population-based Training（兼顾并行调优和串行调优）
 
   * Platforms: 
