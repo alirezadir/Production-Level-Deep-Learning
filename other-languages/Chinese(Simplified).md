@@ -1,6 +1,7 @@
 # :bulb: 产品级深度学习系统入门指南 :clapper: :scroll:  :ferry:
 > 原作者：Alireza Dirafzoon
 > 翻译自：https://github.com/alirezadir/Production-Level-Deep-Learning/blob/master/README.md
+> 
 > 译者：Liu Yun
 > 链接：https://github.com/liuyun1217/Production-Level-Deep-Learning
 
@@ -179,7 +180,7 @@
     * 随机搜索 
     * 贝叶斯优化
     * HyperBand (以及ASHA，Asynchronous Successive Halving Algorithm 异步减半算法)
-  > Hyperband算法对 Jamieson & Talwlkar(2015)提出的SuccessiveHalving算法做了扩展。SuccessiveHalving算法：假设有nn组超参数组合，然后对这nn组超参数均匀地分配预算并进行验证评估，根据验证结果淘汰一半表现差的超参数组，然后重复迭代上述过程直到找到最终的一个最优超参数组合。
+  > [译者注]Hyperband算法对 Jamieson & Talwlkar(2015)提出的SuccessiveHalving算法做了扩展。SuccessiveHalving算法：假设有nn组超参数组合，然后对这nn组超参数均匀地分配预算并进行验证评估，根据验证结果淘汰一半表现差的超参数组，然后重复迭代上述过程直到找到最终的一个最优超参数组合。
     * Population-based Training（兼顾并行调优和串行调优）
 
   * Platforms: 
