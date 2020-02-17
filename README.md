@@ -216,7 +216,7 @@ Machine Learning production software requires a more diverse set of test suites 
     * Jenkins: Old school build system  
 
 
-### 4.2. Web Depolyment
+### 4.2. Web Deployment
   * Consists of a **Prediction System** and a **Serving System**
       * Prediction System: Process input data, make predictions 
       * Serving System (Web server): 
