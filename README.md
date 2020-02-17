@@ -1,5 +1,7 @@
 # :bulb: A Guide to Production Level Deep Learning :clapper: :scroll:  :ferry:
-[NOTE: This repo is still under development, and all feedback and contribution are very welcome :blush:]
+🇨🇳Translation in [Chinese](https://github.com/alirezadir/Production-Level-Deep-Learning/blob/master/other-languages/Chinese(Simplified).md)
+
+:label: Note: This repo is still under development, and all feedback and contribution are very welcome :blush:
 
 Deploying deep learning models in production can be challenging, as it is far beyond training models with good performance. Several distinct components need to be designed and developed in order to deploy a production level deep learning system (seen below):
 
@@ -175,7 +177,7 @@ by active learning (by developers of Spacy), text and image
     * Grid search 
     * Random search 
     * Bayesian Optimization
-    * HyperBand (and ASHA)
+    * HyperBand and Asynchronous Successive Halving Algorithm (ASHA)
     * Population-based Training
 
   * Platforms: 
