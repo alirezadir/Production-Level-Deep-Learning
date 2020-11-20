@@ -97,7 +97,7 @@ by active learning (by developers of Spacy), text and image
 * Data versioning platforms: 
   * [DVC](https://dvc.org/): Open source version control system for ML projects 
   * [Pachyderm](https://www.pachyderm.com/): version control for data 
-  * [Dolt](https://www.liquidata.co/): versioning for SQL database 
+  * [Dolt](https://github.com/dolthub/dolt): a SQL database with Git-like version control for data and schema
     
 ### 1.5. Data Processing 
 * Training data for production models may come from different sources, including *Stored data in db and object stores*, *log processing*, and *outputs of other classifiers*.
