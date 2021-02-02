@@ -1,7 +1,9 @@
 # :bulb: A Guide to Production Level Deep Learning :clapper: :scroll:  :ferry:
 🇨🇳Translation in [Chinese](https://github.com/alirezadir/Production-Level-Deep-Learning/blob/master/other-languages/Chinese(Simplified).md)
 
-:label: Note: This repo is still under development, and all feedback and contribution are very welcome :blush:
+:label: News: If you're interested to gain some insights on ML/AI technical interviews, please check out my new [machine learning interview enlightener](https://github.com/alirezadir/machine-learning-interview-enlightener/blob/main/README.md) repo. 
+
+:label: Note: This repo is under continous development, and all feedback and contribution are very welcome :blush:
 
 Deploying deep learning models in production can be challenging, as it is far beyond training models with good performance. Several distinct components need to be designed and developed in order to deploy a production level deep learning system (seen below):
 
