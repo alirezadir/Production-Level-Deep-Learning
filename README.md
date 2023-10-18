@@ -1,7 +1,7 @@
 # :bulb: A Guide to Production Level Deep Learning :clapper: :scroll:  :ferry:
-🇨🇳Translation in [Chinese](https://github.com/alirezadir/Production-Level-Deep-Learning/blob/master/other-languages/Chinese(Simplified).md)
+🇨🇳 Translation in [Chinese](https://github.com/alirezadir/Production-Level-Deep-Learning/blob/master/other-languages/Chinese(Simplified).md)
 
-:label: NEW: [Machine Learning Interviews](https://github.com/alirezadir/Machine-Learning-Interviews) repo. 
+### :label: NEW: [Machine Learning Interviews](https://github.com/alirezadir/Machine-Learning-Interviews)
 
 :label: Note: This repo is under continous development, and all feedback and contribution are very welcome :blush:
 
