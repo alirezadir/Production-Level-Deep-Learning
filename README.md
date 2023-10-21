@@ -150,7 +150,7 @@ by active learning (by developers of Spacy), text and image
     
 ### 2.3. DL Frameworks 
   * Unless having a good reason not to, use Tensorflow/Keras or PyTorch. <sup>[1](#fsdl)</sup> 
-  * The following figure shows a comparison between different frameworks on how they stand for *"developement"* and *"production"*.  
+  * The following figure shows a comparison between different frameworks on how they stand for *"development"* and *"production"*.  
 
   <p align="center">
   <img src="https://github.com/alirezadir/Production-Level-Deep-Learning/blob/master/images/frameworks.png" title="" width="95%" height="95%">
