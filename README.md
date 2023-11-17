@@ -184,7 +184,7 @@ by active learning (by developers of Spacy), text and image
 
   * Platforms: 
     * [RayTune](http://tune.io/): Ray Tune is a Python library for hyperparameter tuning at any scale (with  a focus on deep learning and deep reinforcement learning). Supports any machine learning framework, including PyTorch, XGBoost, MXNet, and Keras.
-    * [Katib](https://github.com/kubeflow/katib): Kubernete's Native System   for Hyperparameter Tuning and Neural Architecture Search, inspired by   [Google vizier](https://static.googleusercontent.com/media/ research.google.com/ja//pubs/archive/  bcb15507f4b52991a0783013df4222240e942381.pdf) and supports multiple ML/DL   frameworks (e.g. TensorFlow, MXNet, and PyTorch). 
+    * [Katib](https://github.com/kubeflow/katib): Kubernete's Native System   for Hyperparameter Tuning and Neural Architecture Search, inspired by   [Google vizier](https://static.googleusercontent.com/media/research.google.com/ja//pubs/archive/bcb15507f4b52991a0783013df4222240e942381.pdf) and supports multiple ML/DL   frameworks (e.g. TensorFlow, MXNet, and PyTorch). 
     * [Hyperas](https://maxpumperla.com/hyperas/): a simple wrapper around  hyperopt for Keras, with a simple template notation to define  hyper-parameter ranges to tune.
     * [SIGOPT](https://sigopt.com/):  a scalable, enterprise-grade  optimization platform 
     * [Sweeps](https://docs.wandb.com/library/sweeps) from [Weights & Biases] (https://www.wandb.com/): Parameters are not explicitly specified by a   developer. Instead they are approximated and learned by a machine   learning model.
