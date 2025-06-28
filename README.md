@@ -296,7 +296,7 @@ Machine Learning production software requires a more diverse set of test suites 
    * Michelangelo (Uber)
    * Google Cloud AI Platform 
    * Amazon SageMaker 
-   * Neptune 
+   * [Neptune](https://neptune.ai/) 
    * FLOYD 
    * Paperspace 
    * Determined AI 
