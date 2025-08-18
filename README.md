@@ -72,6 +72,7 @@ In the following, we will go through each module and recommend toolsets and fram
   * [Diffgram](https://diffgram.com/): Training Data Software (Computer Vision)
   * [Prodigy](https://prodi.gy/): An annotation tool powered
 by active learning (by developers of Spacy), text and image 
+  * [UBIAI](https://ubiai.tools/): powerful pre-annotation functions and easy-to-use interface to label faster., PDFs, text and image 
   * [HIVE](https://thehive.ai/): AI as a Service platform for computer vision  
   * [Supervisely](https://supervise.ly/): entire computer vision platform 
   * [Labelbox](https://labelbox.com/): computer vision  
